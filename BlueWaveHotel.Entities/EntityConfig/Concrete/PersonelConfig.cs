@@ -16,11 +16,19 @@ namespace BlueWaveHotel.Entities.EntityConfig.Concrete
 
             builder.Property(x => x.BirthDate).IsRequired();
 
-            builder.Property(x => x.salaryType).IsRequired();
+            // SalaryType ile ilişki
+            builder.HasOne(p => p.salaryType)
+                   .WithMany() // Eğer SalaryType sınıfında ters ilişki yoksa WithMany() kullanılabilir.
+                   .HasForeignKey("SalaryTypeId") // Foreign Key olarak kullanılacak property
+                   .IsRequired();
 
             builder.Property(x => x.salary).IsRequired();
 
-            builder.Property(x => x.profession).IsRequired();
+            // Profession ile ilişki
+            builder.HasOne(p => p.profession)
+                   .WithMany() // Eğer Profession sınıfında ters ilişki yoksa WithMany() kullanılabilir.
+                   .HasForeignKey("ProfessionId") // Foreign Key olarak kullanılacak property
+                   .IsRequired();
 
             builder.Property(x => x.Adress).IsRequired().HasMaxLength(500);
 

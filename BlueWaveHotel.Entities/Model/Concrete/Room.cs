@@ -4,7 +4,7 @@ namespace BlueWaveHotel.Entities.Model.Concrete
 {
     public class Room : BaseEntity
     {
-        public string Floor { get; set; }
+        public string FloorId { get; set; }
         public Floor floor { get; set; }
         public string Status { get; set; }
 

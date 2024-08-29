@@ -8,14 +8,18 @@ namespace BlueWaveHotel.Entities.EntityConfig.Concrete
         public override void Configure(EntityTypeBuilder<Room> builder)
         {
             builder.HasMany(r => r.bedTypes)
-            .WithMany(b => b.rooms);
+                   .WithMany(b => b.rooms);
 
             base.Configure(builder);
+
             builder.Property(x => x.Status).IsRequired().HasMaxLength(50);
-            builder.Property(x => x.floor).IsRequired();
-            builder.Property(x => x.bedTypes).IsRequired();
             builder.Property(x => x.Capacity).IsRequired();
 
+            // 'floor' özelliği için doğru yapılandırma:
+            builder.HasOne(r => r.floor)
+                   .WithMany() // Floor sınıfının diğer ilişkileri yoksa, WithMany() kullanılabilir.
+                   .HasForeignKey(r => r.FloorId)
+                   .IsRequired();
         }
     }
 }

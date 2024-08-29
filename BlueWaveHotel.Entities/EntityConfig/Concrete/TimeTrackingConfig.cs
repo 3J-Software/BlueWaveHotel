@@ -9,8 +9,14 @@ namespace BlueWaveHotel.Entities.EntityConfig.Concrete
         public override void Configure(EntityTypeBuilder<TimeTracking> builder)
         {
             base.Configure(builder);
+
+            // Start ve Finish özellikleri zorunlu
             builder.Property(x => x.Start).IsRequired();
-            builder.Property(x => x.personels).IsRequired();
+            builder.Property(x => x.Finish).IsRequired();
+
+            // personels koleksiyonu için ilişki tanımlaması
+            builder.HasMany(tt => tt.personels)
+                   .WithMany(); // Eğer Personel sınıfında ters bir ilişki yoksa WithMany() kullanılabilir
         }
     }
 }

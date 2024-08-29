@@ -9,11 +9,18 @@ namespace BlueWaveHotel.Entities.EntityConfig.Concrete
         public override void Configure(EntityTypeBuilder<Profession> builder)
         {
             base.Configure(builder);
-            builder.Property(x => x.Title).IsRequired().HasMaxLength(50);
+
+            // Title özelliği
+            builder.Property(x => x.Title)
+                   .IsRequired()
+                   .HasMaxLength(50);
+
             builder.HasIndex(x => x.Title).IsUnique();
 
-            builder.Property(x => x.Shift).IsRequired().HasMaxLength(50);
-            builder.HasIndex(x => x.Shift).IsUnique();
+            // Shift özelliği bir ICollection olduğundan, ilişki olarak yapılandırılmalı
+            builder.HasMany(p => p.Shift)
+                   .WithOne() // Eğer Shift içinde ters ilişki yoksa WithOne() kullanılabilir
+                   .IsRequired(false); // Eğer bir Shift'in birden fazla Profession ile ilişkisi yoksa
         }
     }
 }
