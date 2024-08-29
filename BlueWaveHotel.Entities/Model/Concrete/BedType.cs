@@ -4,7 +4,7 @@ namespace BlueWaveHotel.Entities.Model.Concrete
 {
     public class BedType : BaseEntity
     {
-        public string Bedtype { get; set; }
+        public string BedName { get; set; }
 
         public ICollection<Package> packages { get; set; }
         public ICollection<Room> rooms { get; set; }

@@ -8,7 +8,7 @@ namespace BlueWaveHotel.Entities.Model.Concrete
         public Floor floor { get; set; }
         public string Status { get; set; }
 
-        public ICollection<BedType> beds { get; set; }
+        public ICollection<BedType> bedTypes { get; set; }
 
         public int Capacity { get; set; }
 

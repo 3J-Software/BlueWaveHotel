@@ -31,7 +31,6 @@ namespace BlueWaveHotel.Entities.DbContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
         }
     }
 }

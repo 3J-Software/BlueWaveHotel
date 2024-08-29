@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BlueWaveHotel.Entities.EntityConfig.Concrete
 {
-    public class BedTypeConfig : BaseConfig<BedType>
+    public class TimeTrackingConfig : BaseConfig<TimeTracking>
     {
-        public override void Configure(EntityTypeBuilder<BedType> builder)
+        public override void Configure(EntityTypeBuilder<TimeTracking> builder)
         {
             base.Configure(builder);
-            builder.Property(x => x.BedName).HasMaxLength(50);
+            builder.Property(x => x.Start).IsRequired();
+            builder.Property(x => x.personels).IsRequired();
         }
     }
 }

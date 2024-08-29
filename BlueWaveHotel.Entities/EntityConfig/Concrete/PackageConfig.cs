@@ -10,7 +10,7 @@ namespace BlueWaveHotel.Entities.EntityConfig.Concrete
         {
             base.Configure(builder);
             builder.Property(x => x.PackageName).HasMaxLength(120);
-            builder.HasIndex(x => x.PackageName).IsUnique(); //deneme
+            builder.HasIndex(x => x.PackageName).IsUnique();
         }
     }
 }
