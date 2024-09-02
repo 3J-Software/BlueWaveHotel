@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlueWaveHotel.Entities.Migrations
 {
     [DbContext(typeof(mySqlContext))]
-    [Migration("20240829150532_deneme")]
+    [Migration("20240902162155_deneme")]
     partial class deneme
     {
         /// <inheritdoc />
@@ -24,21 +24,6 @@ namespace BlueWaveHotel.Entities.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
-
-            modelBuilder.Entity("BedTypePackage", b =>
-                {
-                    b.Property<string>("BedsId")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("packagesId")
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("BedsId", "packagesId");
-
-                    b.HasIndex("packagesId");
-
-                    b.ToTable("BedTypePackage");
-                });
 
             modelBuilder.Entity("BedTypeRoom", b =>
                 {
@@ -146,7 +131,7 @@ namespace BlueWaveHotel.Entities.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("CustomerId")
+                    b.Property<string>("customerIdId")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
@@ -158,7 +143,7 @@ namespace BlueWaveHotel.Entities.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("customerIdId");
 
                     b.ToTable("extras");
                 });
@@ -193,6 +178,9 @@ namespace BlueWaveHotel.Entities.Migrations
                         .IsRequired()
                         .HasMaxLength(120)
                         .HasColumnType("varchar(120)");
+
+                    b.Property<int>("capacity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -233,17 +221,6 @@ namespace BlueWaveHotel.Entities.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<string>("ProfessionId")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("SalaryTypeId")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("SalaryTypeId1")
-                        .HasColumnType("varchar(255)");
-
                     b.Property<bool>("Status")
                         .HasColumnType("tinyint(1)");
 
@@ -257,8 +234,14 @@ namespace BlueWaveHotel.Entities.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
+                    b.Property<string>("professionId")
+                        .HasColumnType("varchar(255)");
+
                     b.Property<decimal>("salary")
                         .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("salaryTypeIdId")
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
@@ -268,15 +251,12 @@ namespace BlueWaveHotel.Entities.Migrations
                     b.HasIndex("NickName")
                         .IsUnique();
 
-                    b.HasIndex("ProfessionId");
-
-                    b.HasIndex("SalaryTypeId");
-
-                    b.HasIndex("SalaryTypeId1")
-                        .IsUnique();
-
                     b.HasIndex("password")
                         .IsUnique();
+
+                    b.HasIndex("professionId");
+
+                    b.HasIndex("salaryTypeIdId");
 
                     b.ToTable("personels");
                 });
@@ -289,6 +269,10 @@ namespace BlueWaveHotel.Entities.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("ProductCategoriesId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -298,6 +282,8 @@ namespace BlueWaveHotel.Entities.Migrations
                         .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductCategoriesId");
 
                     b.HasIndex("ProductName")
                         .IsUnique();
@@ -317,15 +303,10 @@ namespace BlueWaveHotel.Entities.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("ProductId")
-                        .HasColumnType("varchar(255)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryName")
                         .IsUnique();
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("productCategories");
                 });
@@ -340,13 +321,9 @@ namespace BlueWaveHotel.Entities.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Title")
-                        .IsUnique();
 
                     b.ToTable("professions");
                 });
@@ -402,11 +379,8 @@ namespace BlueWaveHotel.Entities.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("FloorId")
+                    b.Property<string>("ReservationId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("FloorId1")
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Status")
@@ -414,11 +388,15 @@ namespace BlueWaveHotel.Entities.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("floorId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("FloorId");
+                    b.HasIndex("ReservationId");
 
-                    b.HasIndex("FloorId1");
+                    b.HasIndex("floorId");
 
                     b.ToTable("rooms");
                 });
@@ -457,29 +435,14 @@ namespace BlueWaveHotel.Entities.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<string>("PersonelId")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("ProfessionId")
-                        .HasColumnType("varchar(255)");
-
                     b.Property<string>("Start")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<string>("professionsId")
-                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
                         .IsUnique();
-
-                    b.HasIndex("PersonelId");
-
-                    b.HasIndex("ProfessionId");
-
-                    b.HasIndex("professionsId");
 
                     b.ToTable("shifts");
                 });
@@ -492,7 +455,8 @@ namespace BlueWaveHotel.Entities.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("Finish")
+                    b.Property<DateTime?>("Finish")
+                        .IsRequired()
                         .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("Start")
@@ -518,49 +482,49 @@ namespace BlueWaveHotel.Entities.Migrations
                     b.ToTable("ExtraProduct");
                 });
 
+            modelBuilder.Entity("PersonelShift", b =>
+                {
+                    b.Property<string>("PersonelsId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("shiftsId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("PersonelsId", "shiftsId");
+
+                    b.HasIndex("shiftsId");
+
+                    b.ToTable("PersonelShift");
+                });
+
             modelBuilder.Entity("PersonelTimeTracking", b =>
                 {
-                    b.Property<string>("TimeTrackingId")
+                    b.Property<string>("MyPropertyId")
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("personelsId")
                         .HasColumnType("varchar(255)");
 
-                    b.HasKey("TimeTrackingId", "personelsId");
+                    b.HasKey("MyPropertyId", "personelsId");
 
                     b.HasIndex("personelsId");
 
                     b.ToTable("PersonelTimeTracking");
                 });
 
-            modelBuilder.Entity("ReservationRoom", b =>
+            modelBuilder.Entity("ProfessionShift", b =>
                 {
-                    b.Property<string>("ReservationId")
+                    b.Property<string>("ShiftId")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("roomsId")
+                    b.Property<string>("professionsId")
                         .HasColumnType("varchar(255)");
 
-                    b.HasKey("ReservationId", "roomsId");
+                    b.HasKey("ShiftId", "professionsId");
 
-                    b.HasIndex("roomsId");
+                    b.HasIndex("professionsId");
 
-                    b.ToTable("ReservationRoom");
-                });
-
-            modelBuilder.Entity("BedTypePackage", b =>
-                {
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.BedType", null)
-                        .WithMany()
-                        .HasForeignKey("BedsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Package", null)
-                        .WithMany()
-                        .HasForeignKey("packagesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.ToTable("ProfessionShift");
                 });
 
             modelBuilder.Entity("BedTypeRoom", b =>
@@ -580,43 +544,39 @@ namespace BlueWaveHotel.Entities.Migrations
 
             modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.Extra", b =>
                 {
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Customers", "customer")
+                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Customers", "customerId")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
+                        .HasForeignKey("customerIdId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("customer");
+                    b.Navigation("customerId");
                 });
 
             modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.Personel", b =>
                 {
                     b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Profession", "profession")
-                        .WithMany()
-                        .HasForeignKey("ProfessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("personels")
+                        .HasForeignKey("professionId");
 
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.SalaryType", "salaryType")
-                        .WithMany()
-                        .HasForeignKey("SalaryTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.SalaryType", null)
-                        .WithOne("Personel")
-                        .HasForeignKey("BlueWaveHotel.Entities.Model.Concrete.Personel", "SalaryTypeId1");
+                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.SalaryType", "salaryTypeId")
+                        .WithMany("Personels")
+                        .HasForeignKey("salaryTypeIdId");
 
                     b.Navigation("profession");
 
-                    b.Navigation("salaryType");
+                    b.Navigation("salaryTypeId");
                 });
 
-            modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.ProductCategory", b =>
+            modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.Product", b =>
                 {
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Product", null)
-                        .WithMany("ProductCategories")
-                        .HasForeignKey("ProductId");
+                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.ProductCategory", "ProductCategories")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductCategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductCategories");
                 });
 
             modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.Reservation", b =>
@@ -628,7 +588,7 @@ namespace BlueWaveHotel.Entities.Migrations
                         .IsRequired();
 
                     b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Package", "package")
-                        .WithMany()
+                        .WithMany("reservations")
                         .HasForeignKey("packageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -640,34 +600,21 @@ namespace BlueWaveHotel.Entities.Migrations
 
             modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.Room", b =>
                 {
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Floor", "floor")
-                        .WithMany()
-                        .HasForeignKey("FloorId")
+                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Reservation", "Reservation")
+                        .WithMany("roomsId")
+                        .HasForeignKey("ReservationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Floor", null)
+                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Floor", "floor")
                         .WithMany("rooms")
-                        .HasForeignKey("FloorId1");
+                        .HasForeignKey("floorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Reservation");
 
                     b.Navigation("floor");
-                });
-
-            modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.Shift", b =>
-                {
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Personel", null)
-                        .WithMany("shifts")
-                        .HasForeignKey("PersonelId");
-
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Profession", null)
-                        .WithMany("Shift")
-                        .HasForeignKey("ProfessionId");
-
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Profession", "professions")
-                        .WithMany()
-                        .HasForeignKey("professionsId");
-
-                    b.Navigation("professions");
                 });
 
             modelBuilder.Entity("ExtraProduct", b =>
@@ -685,11 +632,26 @@ namespace BlueWaveHotel.Entities.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PersonelShift", b =>
+                {
+                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Personel", null)
+                        .WithMany()
+                        .HasForeignKey("PersonelsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Shift", null)
+                        .WithMany()
+                        .HasForeignKey("shiftsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("PersonelTimeTracking", b =>
                 {
                     b.HasOne("BlueWaveHotel.Entities.Model.Concrete.TimeTracking", null)
                         .WithMany()
-                        .HasForeignKey("TimeTrackingId")
+                        .HasForeignKey("MyPropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -700,17 +662,17 @@ namespace BlueWaveHotel.Entities.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ReservationRoom", b =>
+            modelBuilder.Entity("ProfessionShift", b =>
                 {
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Reservation", null)
+                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Shift", null)
                         .WithMany()
-                        .HasForeignKey("ReservationId")
+                        .HasForeignKey("ShiftId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Room", null)
+                    b.HasOne("BlueWaveHotel.Entities.Model.Concrete.Profession", null)
                         .WithMany()
-                        .HasForeignKey("roomsId")
+                        .HasForeignKey("professionsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -720,25 +682,29 @@ namespace BlueWaveHotel.Entities.Migrations
                     b.Navigation("rooms");
                 });
 
-            modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.Personel", b =>
+            modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.Package", b =>
                 {
-                    b.Navigation("shifts");
+                    b.Navigation("reservations");
                 });
 
-            modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.Product", b =>
+            modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.ProductCategory", b =>
                 {
-                    b.Navigation("ProductCategories");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.Profession", b =>
                 {
-                    b.Navigation("Shift");
+                    b.Navigation("personels");
+                });
+
+            modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.Reservation", b =>
+                {
+                    b.Navigation("roomsId");
                 });
 
             modelBuilder.Entity("BlueWaveHotel.Entities.Model.Concrete.SalaryType", b =>
                 {
-                    b.Navigation("Personel")
-                        .IsRequired();
+                    b.Navigation("Personels");
                 });
 #pragma warning restore 612, 618
         }

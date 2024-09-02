@@ -11,16 +11,16 @@ namespace BlueWaveHotel.Entities.EntityConfig.Concrete
             base.Configure(builder);
 
             // Title özelliği
-            builder.Property(x => x.Title)
-                   .IsRequired()
-                   .HasMaxLength(50);
+            //builder.Property(x => x.Title)
+            //       .IsRequired()
+            //       .HasMaxLength(50);
 
-            builder.HasIndex(x => x.Title).IsUnique();
+            //builder.HasIndex(x => x.Title).IsUnique();
 
-            // Shift özelliği bir ICollection olduğundan, ilişki olarak yapılandırılmalı
-            builder.HasMany(p => p.Shift)
-                   .WithOne() // Eğer Shift içinde ters ilişki yoksa WithOne() kullanılabilir
-                   .IsRequired(false); // Eğer bir Shift'in birden fazla Profession ile ilişkisi yoksa
+            //// Shift özelliği bir ICollection olduğundan, ilişki olarak yapılandırılmalı
+            //builder.HasMany(p => p.Shift)
+            //       .WithOne() // Eğer Shift içinde ters ilişki yoksa WithOne() kullanılabilir
+            //       .IsRequired(false); // Eğer bir Shift'in birden fazla Profession ile ilişkisi yoksa
         }
     }
 }

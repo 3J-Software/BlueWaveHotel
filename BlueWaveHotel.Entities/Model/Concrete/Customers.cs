@@ -12,8 +12,6 @@ namespace BlueWaveHotel.Entities.Model.Concrete
         public string Mail { get; set; }
         public string NickName { get; set; }
         public string password { get; set; }
-
-        //ICollection<Extra> extras { get; set; }
         ICollection<Reservation> reservations { get; set; }
     }
 }

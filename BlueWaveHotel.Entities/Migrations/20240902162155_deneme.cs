@@ -84,6 +84,7 @@ namespace BlueWaveHotel.Entities.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PackageName = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    capacity = table.Column<int>(type: "int", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
@@ -93,19 +94,18 @@ namespace BlueWaveHotel.Entities.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "products",
+                name: "productCategories",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProductName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    CategoryName = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    price = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_products", x => x.Id);
+                    table.PrimaryKey("PK_productCategories", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -115,7 +115,7 @@ namespace BlueWaveHotel.Entities.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Title = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Title = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
@@ -142,6 +142,26 @@ namespace BlueWaveHotel.Entities.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "shifts",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Start = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Finish = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_shifts", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "timeTrackings",
                 columns: table => new
                 {
@@ -163,7 +183,7 @@ namespace BlueWaveHotel.Entities.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CustomerId = table.Column<string>(type: "varchar(255)", nullable: false)
+                    customerIdId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     quantity = table.Column<int>(type: "int", nullable: false),
                     fee = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
@@ -173,68 +193,9 @@ namespace BlueWaveHotel.Entities.Migrations
                 {
                     table.PrimaryKey("PK_extras", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_extras_customers_CustomerId",
-                        column: x => x.CustomerId,
+                        name: "FK_extras_customers_customerIdId",
+                        column: x => x.customerIdId,
                         principalTable: "customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "rooms",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    FloorId = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Status = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Capacity = table.Column<int>(type: "int", nullable: false),
-                    FloorId1 = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_rooms", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_rooms_floors_FloorId",
-                        column: x => x.FloorId,
-                        principalTable: "floors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_rooms_floors_FloorId1",
-                        column: x => x.FloorId1,
-                        principalTable: "floors",
-                        principalColumn: "Id");
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "BedTypePackage",
-                columns: table => new
-                {
-                    BedsId = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    packagesId = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BedTypePackage", x => new { x.BedsId, x.packagesId });
-                    table.ForeignKey(
-                        name: "FK_BedTypePackage_bedTypes_BedsId",
-                        column: x => x.BedsId,
-                        principalTable: "bedTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_BedTypePackage_packages_packagesId",
-                        column: x => x.packagesId,
-                        principalTable: "packages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -246,6 +207,8 @@ namespace BlueWaveHotel.Entities.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    customersId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     packageId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Purchase = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
@@ -253,8 +216,6 @@ namespace BlueWaveHotel.Entities.Migrations
                     BookingEnd = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     CheckIn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     CheckOut = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    customersId = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
@@ -276,25 +237,27 @@ namespace BlueWaveHotel.Entities.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "productCategories",
+                name: "products",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CategoryName = table.Column<string>(type: "varchar(255)", nullable: false)
+                    ProductName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProductId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    ProductCategoriesId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    price = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_productCategories", x => x.Id);
+                    table.PrimaryKey("PK_products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_productCategories_products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "products",
-                        principalColumn: "Id");
+                        name: "FK_products_productCategories_ProductCategoriesId",
+                        column: x => x.ProductCategoriesId,
+                        principalTable: "productCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -309,10 +272,10 @@ namespace BlueWaveHotel.Entities.Migrations
                     Surname = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     BirthDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    SalaryTypeId = table.Column<string>(type: "varchar(255)", nullable: false)
+                    salaryTypeIdId = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     salary = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
-                    ProfessionId = table.Column<string>(type: "varchar(255)", nullable: false)
+                    professionId = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Adress = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -323,30 +286,81 @@ namespace BlueWaveHotel.Entities.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     password = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SalaryTypeId1 = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_personels", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_personels_professions_ProfessionId",
-                        column: x => x.ProfessionId,
+                        name: "FK_personels_professions_professionId",
+                        column: x => x.professionId,
+                        principalTable: "professions",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_personels_salaryTypes_salaryTypeIdId",
+                        column: x => x.salaryTypeIdId,
+                        principalTable: "salaryTypes",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "ProfessionShift",
+                columns: table => new
+                {
+                    ShiftId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    professionsId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProfessionShift", x => new { x.ShiftId, x.professionsId });
+                    table.ForeignKey(
+                        name: "FK_ProfessionShift_professions_professionsId",
+                        column: x => x.professionsId,
                         principalTable: "professions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_personels_salaryTypes_SalaryTypeId",
-                        column: x => x.SalaryTypeId,
-                        principalTable: "salaryTypes",
+                        name: "FK_ProfessionShift_shifts_ShiftId",
+                        column: x => x.ShiftId,
+                        principalTable: "shifts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "rooms",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    floorId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Status = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Capacity = table.Column<int>(type: "int", nullable: false),
+                    ReservationId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_rooms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_rooms_floors_floorId",
+                        column: x => x.floorId,
+                        principalTable: "floors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_personels_salaryTypes_SalaryTypeId1",
-                        column: x => x.SalaryTypeId1,
-                        principalTable: "salaryTypes",
-                        principalColumn: "Id");
+                        name: "FK_rooms_reservations_ReservationId",
+                        column: x => x.ReservationId,
+                        principalTable: "reservations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -378,6 +392,60 @@ namespace BlueWaveHotel.Entities.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "PersonelShift",
+                columns: table => new
+                {
+                    PersonelsId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    shiftsId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonelShift", x => new { x.PersonelsId, x.shiftsId });
+                    table.ForeignKey(
+                        name: "FK_PersonelShift_personels_PersonelsId",
+                        column: x => x.PersonelsId,
+                        principalTable: "personels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PersonelShift_shifts_shiftsId",
+                        column: x => x.shiftsId,
+                        principalTable: "shifts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PersonelTimeTracking",
+                columns: table => new
+                {
+                    MyPropertyId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    personelsId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonelTimeTracking", x => new { x.MyPropertyId, x.personelsId });
+                    table.ForeignKey(
+                        name: "FK_PersonelTimeTracking_personels_personelsId",
+                        column: x => x.personelsId,
+                        principalTable: "personels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PersonelTimeTracking_timeTrackings_MyPropertyId",
+                        column: x => x.MyPropertyId,
+                        principalTable: "timeTrackings",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "BedTypeRoom",
                 columns: table => new
                 {
@@ -403,106 +471,6 @@ namespace BlueWaveHotel.Entities.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "ReservationRoom",
-                columns: table => new
-                {
-                    ReservationId = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    roomsId = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ReservationRoom", x => new { x.ReservationId, x.roomsId });
-                    table.ForeignKey(
-                        name: "FK_ReservationRoom_reservations_ReservationId",
-                        column: x => x.ReservationId,
-                        principalTable: "reservations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ReservationRoom_rooms_roomsId",
-                        column: x => x.roomsId,
-                        principalTable: "rooms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "PersonelTimeTracking",
-                columns: table => new
-                {
-                    TimeTrackingId = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    personelsId = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PersonelTimeTracking", x => new { x.TimeTrackingId, x.personelsId });
-                    table.ForeignKey(
-                        name: "FK_PersonelTimeTracking_personels_personelsId",
-                        column: x => x.personelsId,
-                        principalTable: "personels",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PersonelTimeTracking_timeTrackings_TimeTrackingId",
-                        column: x => x.TimeTrackingId,
-                        principalTable: "timeTrackings",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "shifts",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Start = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Finish = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    professionsId = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    PersonelId = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProfessionId = table.Column<string>(type: "varchar(255)", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_shifts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_shifts_personels_PersonelId",
-                        column: x => x.PersonelId,
-                        principalTable: "personels",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_shifts_professions_ProfessionId",
-                        column: x => x.ProfessionId,
-                        principalTable: "professions",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_shifts_professions_professionsId",
-                        column: x => x.professionsId,
-                        principalTable: "professions",
-                        principalColumn: "Id");
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BedTypePackage_packagesId",
-                table: "BedTypePackage",
-                column: "packagesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BedTypeRoom_roomsId",
@@ -539,9 +507,9 @@ namespace BlueWaveHotel.Entities.Migrations
                 column: "productId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_extras_CustomerId",
+                name: "IX_extras_customerIdId",
                 table: "extras",
-                column: "CustomerId");
+                column: "customerIdId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_packages_PackageName",
@@ -568,20 +536,19 @@ namespace BlueWaveHotel.Entities.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_personels_ProfessionId",
+                name: "IX_personels_professionId",
                 table: "personels",
-                column: "ProfessionId");
+                column: "professionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_personels_SalaryTypeId",
+                name: "IX_personels_salaryTypeIdId",
                 table: "personels",
-                column: "SalaryTypeId");
+                column: "salaryTypeIdId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_personels_SalaryTypeId1",
-                table: "personels",
-                column: "SalaryTypeId1",
-                unique: true);
+                name: "IX_PersonelShift_shiftsId",
+                table: "PersonelShift",
+                column: "shiftsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersonelTimeTracking_personelsId",
@@ -595,9 +562,9 @@ namespace BlueWaveHotel.Entities.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_productCategories_ProductId",
-                table: "productCategories",
-                column: "ProductId");
+                name: "IX_products_ProductCategoriesId",
+                table: "products",
+                column: "ProductCategoriesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_products_ProductName",
@@ -606,15 +573,9 @@ namespace BlueWaveHotel.Entities.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_professions_Title",
-                table: "professions",
-                column: "Title",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ReservationRoom_roomsId",
-                table: "ReservationRoom",
-                column: "roomsId");
+                name: "IX_ProfessionShift_professionsId",
+                table: "ProfessionShift",
+                column: "professionsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_reservations_customersId",
@@ -627,43 +588,25 @@ namespace BlueWaveHotel.Entities.Migrations
                 column: "packageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_rooms_FloorId",
+                name: "IX_rooms_floorId",
                 table: "rooms",
-                column: "FloorId");
+                column: "floorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_rooms_FloorId1",
+                name: "IX_rooms_ReservationId",
                 table: "rooms",
-                column: "FloorId1");
+                column: "ReservationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_shifts_Name",
                 table: "shifts",
                 column: "Name",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_shifts_PersonelId",
-                table: "shifts",
-                column: "PersonelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_shifts_ProfessionId",
-                table: "shifts",
-                column: "ProfessionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_shifts_professionsId",
-                table: "shifts",
-                column: "professionsId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "BedTypePackage");
-
             migrationBuilder.DropTable(
                 name: "BedTypeRoom");
 
@@ -671,52 +614,55 @@ namespace BlueWaveHotel.Entities.Migrations
                 name: "ExtraProduct");
 
             migrationBuilder.DropTable(
+                name: "PersonelShift");
+
+            migrationBuilder.DropTable(
                 name: "PersonelTimeTracking");
 
             migrationBuilder.DropTable(
-                name: "productCategories");
-
-            migrationBuilder.DropTable(
-                name: "ReservationRoom");
-
-            migrationBuilder.DropTable(
-                name: "shifts");
+                name: "ProfessionShift");
 
             migrationBuilder.DropTable(
                 name: "bedTypes");
 
             migrationBuilder.DropTable(
-                name: "extras");
+                name: "rooms");
 
             migrationBuilder.DropTable(
-                name: "timeTrackings");
+                name: "extras");
 
             migrationBuilder.DropTable(
                 name: "products");
 
             migrationBuilder.DropTable(
-                name: "reservations");
-
-            migrationBuilder.DropTable(
-                name: "rooms");
-
-            migrationBuilder.DropTable(
                 name: "personels");
 
             migrationBuilder.DropTable(
-                name: "customers");
+                name: "timeTrackings");
 
             migrationBuilder.DropTable(
-                name: "packages");
+                name: "shifts");
 
             migrationBuilder.DropTable(
                 name: "floors");
+
+            migrationBuilder.DropTable(
+                name: "reservations");
+
+            migrationBuilder.DropTable(
+                name: "productCategories");
 
             migrationBuilder.DropTable(
                 name: "professions");
 
             migrationBuilder.DropTable(
                 name: "salaryTypes");
+
+            migrationBuilder.DropTable(
+                name: "customers");
+
+            migrationBuilder.DropTable(
+                name: "packages");
         }
     }
 }

@@ -6,5 +6,6 @@ namespace BlueWaveHotel.Entities.Model.Concrete
     {
         public string Title { get; set; }
         public ICollection<Shift> Shift { get; set; }
+        public ICollection<Personel> personels { get; set; }
     }
 }

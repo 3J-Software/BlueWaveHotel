@@ -6,6 +6,6 @@ namespace BlueWaveHotel.Entities.Model.Concrete
     {
         public ICollection<Personel> personels { get; set; }
         public DateTime Start { get; set; }
-        public DateTime Finish { get; set; }
+        public DateTime? Finish { get; set; }
     }
 }

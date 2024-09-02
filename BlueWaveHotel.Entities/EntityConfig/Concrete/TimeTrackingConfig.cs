@@ -15,8 +15,8 @@ namespace BlueWaveHotel.Entities.EntityConfig.Concrete
             builder.Property(x => x.Finish).IsRequired();
 
             // personels koleksiyonu için ilişki tanımlaması
-            builder.HasMany(tt => tt.personels)
-                   .WithMany(); // Eğer Personel sınıfında ters bir ilişki yoksa WithMany() kullanılabilir
+            //builder.HasMany(tt => tt.personels)
+            //       .WithMany(); // Eğer Personel sınıfında ters bir ilişki yoksa WithMany() kullanılabilir
         }
     }
 }

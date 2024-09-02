@@ -9,6 +9,7 @@ namespace BlueWaveHotel.Entities.Model.Concrete
         public string Finish { get; set; }
 
         //public string professions { get; set; }
-        public Profession professions { get; set; }
+        public ICollection<Profession> professions { get; set; }
+        public ICollection<Personel> Personels { get; set; }
     }
 }
