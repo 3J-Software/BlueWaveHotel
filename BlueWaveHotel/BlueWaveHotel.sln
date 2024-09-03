@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueWaveHotel", "BlueWaveHo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueWaveHotel.Entities", "..\BlueWaveHotel.Entities\BlueWaveHotel.Entities.csproj", "{4131FF50-5A27-4295-AD5C-E14901F3D12F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueWaveHotel.DAL", "..\BlueWaveHotel.DAL\BlueWaveHotel.DAL.csproj", "{8663C6F4-5ACB-43B9-9B09-63C5E9ACB168}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueWaveHotel.BL", "..\BlueWaveHotel.BL\BlueWaveHotel.BL.csproj", "{04033BEB-4AEE-4B56-BDC0-CBDEB0F219EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{4131FF50-5A27-4295-AD5C-E14901F3D12F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4131FF50-5A27-4295-AD5C-E14901F3D12F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4131FF50-5A27-4295-AD5C-E14901F3D12F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8663C6F4-5ACB-43B9-9B09-63C5E9ACB168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8663C6F4-5ACB-43B9-9B09-63C5E9ACB168}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8663C6F4-5ACB-43B9-9B09-63C5E9ACB168}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8663C6F4-5ACB-43B9-9B09-63C5E9ACB168}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04033BEB-4AEE-4B56-BDC0-CBDEB0F219EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04033BEB-4AEE-4B56-BDC0-CBDEB0F219EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04033BEB-4AEE-4B56-BDC0-CBDEB0F219EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04033BEB-4AEE-4B56-BDC0-CBDEB0F219EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

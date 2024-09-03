@@ -1,0 +1,19 @@
+﻿using BlueWaveHotel.BL.Managers.Abstact;
+using BlueWaveHotel.DAL.Repository.Concrete;
+using BlueWaveHotel.Entities.DbContexts;
+using BlueWaveHotel.Entities.Model.Abstract;
+
+namespace BlueWaveHotel.BL.Managers.Concrete
+{
+    public class BaseManager<T> : Repository<T>, IManager<T> where T : BaseEntity
+    {
+
+        private readonly mySqlContext _context;
+
+        public BaseManager(mySqlContext context)
+        {
+            _context = context;
+        }
+
+    }
+}
