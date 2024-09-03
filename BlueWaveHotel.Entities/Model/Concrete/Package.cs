@@ -4,9 +4,9 @@ namespace BlueWaveHotel.Entities.Model.Concrete
 {
     public class Package : BaseEntity
     {
-        public string PackageName { get; set; }
+        public string packageName { get; set; }
         public int capacity { get; set; }
-
         public ICollection<Reservation> reservations { get; set; }
+        public decimal fee { get; set; }
     }
 }

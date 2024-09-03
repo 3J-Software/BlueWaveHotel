@@ -16,6 +16,6 @@ namespace BlueWaveHotel.Entities.Model.Concrete
         public DateTime BookingEnd { get; set; }
         public DateTime? CheckIn { get; set; }
         public DateTime? CheckOut { get; set; }
-
+        public decimal Fee { get; set; }
     }
 }

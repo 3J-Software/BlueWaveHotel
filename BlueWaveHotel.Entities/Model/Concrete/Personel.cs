@@ -8,7 +8,6 @@ namespace BlueWaveHotel.Entities.Model.Concrete
         public string Surname { get; set; }
         public DateTime BirthDate { get; set; }
 
-        //public string SalaryTypeId { get; set; }
         public SalaryType salaryTypeId { get; set; }
 
         public decimal salary { get; set; }

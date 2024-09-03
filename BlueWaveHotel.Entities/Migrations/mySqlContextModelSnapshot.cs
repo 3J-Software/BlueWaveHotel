@@ -171,17 +171,20 @@ namespace BlueWaveHotel.Entities.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("PackageName")
+                    b.Property<int>("capacity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("fee")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("packageName")
                         .IsRequired()
                         .HasMaxLength(120)
                         .HasColumnType("varchar(120)");
 
-                    b.Property<int>("capacity")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("PackageName")
+                    b.HasIndex("packageName")
                         .IsUnique();
 
                     b.ToTable("packages");
@@ -344,6 +347,9 @@ namespace BlueWaveHotel.Entities.Migrations
 
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<decimal>("Fee")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<decimal>("Purchase")
                         .HasColumnType("decimal(65,30)");

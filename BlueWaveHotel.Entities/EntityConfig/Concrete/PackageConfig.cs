@@ -9,8 +9,8 @@ namespace BlueWaveHotel.Entities.EntityConfig.Concrete
         public override void Configure(EntityTypeBuilder<Package> builder)
         {
             base.Configure(builder);
-            builder.Property(x => x.PackageName).HasMaxLength(120);
-            builder.HasIndex(x => x.PackageName).IsUnique();
+            builder.Property(x => x.packageName).HasMaxLength(120);
+            builder.HasIndex(x => x.packageName).IsUnique();
         }
     }
 }

@@ -82,9 +82,10 @@ namespace BlueWaveHotel.Entities.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PackageName = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false)
+                    packageName = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     capacity = table.Column<int>(type: "int", nullable: false),
+                    fee = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
@@ -216,6 +217,7 @@ namespace BlueWaveHotel.Entities.Migrations
                     BookingEnd = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     CheckIn = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     CheckOut = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Fee = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
@@ -512,9 +514,9 @@ namespace BlueWaveHotel.Entities.Migrations
                 column: "customerIdId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_packages_PackageName",
+                name: "IX_packages_packageName",
                 table: "packages",
-                column: "PackageName",
+                column: "packageName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
