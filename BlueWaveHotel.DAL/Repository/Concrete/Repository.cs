@@ -8,6 +8,8 @@ namespace BlueWaveHotel.DAL.Repository.Concrete
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
+
+
         readonly mySqlContext _mySqlContext;
         readonly DbSet<T> _dbSet;
         public int Delete(T input)
@@ -16,7 +18,7 @@ namespace BlueWaveHotel.DAL.Repository.Concrete
             return _mySqlContext.SaveChanges();
         }
 
-        public int DeleteById(int id)
+        public int DeleteById(T id)
         {
             _dbSet.Remove(id);
             return _mySqlContext.SaveChanges();
@@ -32,9 +34,9 @@ namespace BlueWaveHotel.DAL.Repository.Concrete
         public List<T>? GetAll(Expression<Func<T, bool>> predicate = null)
         {
             if (predicate != null)
-                return _dbContext.Set<T>().Where(predicate).ToList();
+                return _mySqlContext.Set<T>().Where(predicate).ToList();
             else
-                return _dbContext.Set<T>().ToList();
+                return _mySqlContext.Set<T>().ToList();
         }
 
         public IQueryable<T> GetAllInclude(Expression<Func<T, bool>>? predicate, params Expression<Func<T, object>>[] include)
@@ -42,17 +44,17 @@ namespace BlueWaveHotel.DAL.Repository.Concrete
             IQueryable<T> query;
             if (predicate != null)
             {
-                query = _dbContext.Set<T>().Where(predicate);
+                query = _mySqlContext.Set<T>().Where(predicate);
             }
             else
             {
-                query = _dbContext.Set<T>();
+                query = _mySqlContext.Set<T>();
             }
 
             return include.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
 
-        public T? GetById(int id)
+        public T? GetById(string id)
         {
             return _dbSet.Find(id);
         }
@@ -65,8 +67,10 @@ namespace BlueWaveHotel.DAL.Repository.Concrete
 
         public int Update(T input)
         {
-            _mySqlContext.Set<T>.Update(input);
+            _dbSet.Update(input);
             return _mySqlContext.SaveChanges();
         }
+
+
     }
 }

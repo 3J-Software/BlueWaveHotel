@@ -8,15 +8,13 @@ namespace BlueWaveHotel.DAL.Repository.Abstract
         public int Insert(T input);
         public int Update(T input);
         public int Delete(T input);
-        public int DeleteById(int id);
+        public int DeleteById(T id);
         public List<T>? GetAll(Expression<Func<T, bool>> predicate = null);
-        public T? GetById(int id);
+        public T? GetById(string id);
 
         public T? Get(Expression<Func<T, bool>> predicate = null);
 
         IQueryable<T> GetAllInclude(Expression<Func<T, bool>>? predicate,
            params Expression<Func<T, object>>[] include);
-
-
     }
 }

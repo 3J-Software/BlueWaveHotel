@@ -1,4 +1,4 @@
-﻿using BlueWaveHotel.BL.Managers.Abstact;
+﻿using BlueWaveHotel.BL.Managers.Abstract;
 using BlueWaveHotel.DAL.Repository.Concrete;
 using BlueWaveHotel.Entities.DbContexts;
 using BlueWaveHotel.Entities.Model.Abstract;
@@ -14,6 +14,7 @@ namespace BlueWaveHotel.BL.Managers.Concrete
         {
             _context = context;
         }
+
 
     }
 }
