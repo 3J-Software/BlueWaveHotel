@@ -7,10 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BlueWaveHotel.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Aladin&display=swap" rel="stylesheet">
 
     <style>
-
-
         /* Arka plan rengi */
         .custom-bg {
             background-color: #FFF9D4; /* Soluk sarı arka plan */
@@ -19,25 +18,23 @@
         /* Logo stil ayarları */
         .navbar-brand {
             font-family: 'Brush Script MT', cursive;
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: #002D62; /* Mavi yazı rengi */
             text-align: center;
         }
 
         .center-logo {
-            width: 280px; /* Logonun genişliği büyütüldü */
-            height: auto;
-            margin-right: 30px;
+            width: 220px;
+            margin-top: -10px;
         }
 
         /* Sol taraftaki Campaign, Reservation ve Rooms için stil */
         .custom-left-link {
-            font-family: 'Georgia', serif;
+            font-family: 'Aladin', cursive;
             color: #e03e24 !important;
-            font-size: 1.2rem !important;
+            font-size: 1.8rem !important;
             margin-right: 20px !important;
         }
-
 
             .custom-left-link:hover {
                 color: #FF4500; /* Hover ile turuncu geçiş */
@@ -46,9 +43,9 @@
 
         /* Sağdaki Login ve Register için stil */
         .custom-right-link {
-            font-family: 'Georgia', serif;
+            font-family: 'Aladin', cursive;
             color: #1a4870 !important;
-            font-size: 1.2rem !important;
+            font-size: 1.8rem !important;
             margin-left: 20px !important;
         }
 
@@ -56,54 +53,55 @@
                 color: #FF4500; /* Hover ile turuncu geçiş */
                 text-decoration: underline;
             }
-
-
-
     </style>
-
 </head>
 <body>
-    
-    
+
+
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light custom-bg border-bottom box-shadow mb-3">
-            <div class="container-fluid d-flex justify-content-between align-items-center">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link custom-left-link" asp-area="" asp-controller="Home" asp-action="Index">Campaign</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom-left-link" asp-area="" asp-controller="Home" asp-action="Privacy">Reservation</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom-left-link" asp-area="" asp-controller="Home" asp-action="Rooms">Rooms</a>
-                    </li>
-                </ul>
+        
+        <nav class="navbar navbar-expand-sm navbar-light custom-bg border-bottom box-shadow mb-3">
+            <div class="container-fluid">
 
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                            <img src="/images/logo.png" alt="Logo" class="center-logo">
-                        </a>
-                    </li>
-                </ul>
+                <a class="navbar-brand d-lg-none" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="/images/logo.png" alt="Logo" class="center-logo">
+                </a>
 
-               
+                <!-- Hamburger Menu Icon for Mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <!-- Sağdaki login ve register -->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link custom-right-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link custom-right-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                    </li>
-                </ul>
-            </div>
+                <!-- Navbar Content -->
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <!-- Left Links -->
+                    <ul class="navbar-nav col-4 mx-auto">
+                        <li> <a class="nav-link custom-left-link" asp-area="" asp-controller="Home" asp-action="Index">Campaign</a></li>
+                        <li> <a class="nav-link custom-left-link" asp-area="" asp-controller="Home" asp-action="Privacy">Reservation</a></li>
+                        <li> <a class="nav-link custom-left-link" asp-area="" asp-controller="Home" asp-action="Rooms">Rooms</a></li>
+                   </ul>
+                </div>
+                    <!-- Center Logo -->
+
+                <div class="d-none col-3 d-lg-block">
+                    <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="/images/logo.png" alt="Logo" class="center-logo">
+                    </a>
+                </div>
+                   
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <!-- Left Links -->
+                    <ul class="navbar-nav col-5 ">
+                        <li> <a class="nav-link custom-right-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                        <li> <a class="nav-link custom-right-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                    </ul>
+                </div>
+
+                </div>
+           
         </nav>
     </header>
-
-
 
 
 
@@ -113,16 +111,11 @@
         </main>
     </div>
 
-
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2024 - BlueWaveHotel - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-
-
-
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
