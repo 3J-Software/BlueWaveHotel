@@ -29,6 +29,7 @@ footer {
 
         footer .Links li {
             list-style: none;
+            
         }
 
             footer .Links li a {
@@ -41,6 +42,7 @@ footer {
             }
 
                 footer .Links li a:hover {
+                   
                     transform: translateY(5px);
                 }
 
