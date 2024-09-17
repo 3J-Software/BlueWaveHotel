@@ -20,3 +20,41 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*.content {
+    padding: 20px;
+    background-color: #ffffe5;
+    border: 1px solid #cccccc;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.page-title {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px;
+    color: #b02b2c;
+    margin-bottom: 20px;
+}
+
+.about-content,
+.policy-content {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+}
+
+    .about-content p,
+    .policy-content p {
+        margin-bottom: 15px;
+    }
+
+    .policy-content ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+        .policy-content ul li {
+            margin-bottom: 10px;
+        }*/

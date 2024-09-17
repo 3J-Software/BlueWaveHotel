@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BlueWaveHotel.styles.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Aladin&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="~/css/LayoutStyle.css" type="text/css"/>
     <style>
         /* Arka plan rengi */
         .custom-bg {
@@ -59,7 +59,7 @@
 
 
     <header>
-        
+
         <nav class="navbar navbar-expand-sm navbar-light custom-bg border-bottom box-shadow mb-3">
             <div class="container-fluid">
 
@@ -88,7 +88,7 @@
                         <img src="/images/logo.png" alt="Logo" class="center-logo">
                     </a>
                 </div>
-                   
+
 
                 <div class="collapse navbar-collapse" id="navbarContent">
                     <!-- Left Links -->
@@ -99,7 +99,7 @@
                 </div>
 
                 </div>
-           
+
         </nav>
     </header>
 
@@ -110,12 +110,34 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - BlueWaveHotel - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer>
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
         </div>
+        <ul class="Links">
+            <li><a href=/Home/Policy>Policy</a> </li>
+            <li><a href="#">Contact</a> </li>
+            <li><a href=/Home/About>About</a></li>
+        </ul>
     </footer>
+
+    @* <footer class="border-top footer text-muted">
+        <div class="container-fluid" id="footerr">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="card text-center" style="width: 18rem; background-color: darkblue; opacity: 0.3;">
+                    <div class="card-body">
+                        <p>Lorem Ipsum@2024</p>
+                        <a asp-action="" asp-area="" asp-controller="">Policy</a>
+                        <a asp-action="" asp-area="" asp-controller="">Contact</a>
+                        <a asp-action="" asp-area="" asp-controller="">About</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer> *@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
