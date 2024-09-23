@@ -1,0 +1,30 @@
+﻿body {
+}
+
+.red-text {
+    color: #FF4500;
+    font-family: 'Aladin', cursive;
+}
+
+.blue-text {
+    color: #1a4870;
+    font-family: 'Aladin', cursive;
+}
+
+.sandColor-text {
+    color: #cb8011;
+    font-family: 'Aladin', cursive;
+}
+
+.button {
+    background-color: #1a4870;
+    color: azure;
+}
+    .button:hover {
+        background-color: seagreen;
+        color: lavender;
+    }
+.img {
+    object-fit: fill;
+    border-radius: 1rem 0 0 1rem;
+}

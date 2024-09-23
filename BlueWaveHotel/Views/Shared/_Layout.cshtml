@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BlueWaveHotel.styles.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Aladin&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/LayoutStyle.css" type="text/css"/>
+    <link rel="stylesheet" href="~/css/LayoutStyle.css" type="text/css" />
     <style>
         /* Arka plan rengi */
         .custom-bg {
@@ -77,11 +77,11 @@
                     <!-- Left Links -->
                     <ul class="navbar-nav col-4 mx-auto">
                         <li> <a class="nav-link custom-left-link" asp-area="" asp-controller="Home" asp-action="Index">Campaign</a></li>
-                        <li> <a class="nav-link custom-left-link" asp-area="" asp-controller="Home" asp-action="Privacy">Reservation</a></li>
+                        <li> <a class="nav-link custom-left-link" asp-area="" asp-controller="Reservation" asp-action="Index">Reservation</a></li>
                         <li> <a class="nav-link custom-left-link" asp-area="" asp-controller="Home" asp-action="Rooms">Rooms</a></li>
-                   </ul>
+                    </ul>
                 </div>
-                    <!-- Center Logo -->
+                <!-- Center Logo -->
 
                 <div class="d-none col-3 d-lg-block">
                     <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index">
@@ -98,47 +98,18 @@
                     </ul>
                 </div>
 
-                </div>
+            </div>
 
         </nav>
     </header>
 
 
 
-    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
-    <footer>
-        <div class="waves">
-            <div class="wave" id="wave1"></div>
-            <div class="wave" id="wave2"></div>
-            <div class="wave" id="wave3"></div>
-            <div class="wave" id="wave4"></div>
-        </div>
-        <ul class="Links">
-            <li><a href=/Home/Policy>Policy</a> </li>
-            <li><a href="#">Contact</a> </li>
-            <li><a href=/Home/About>About</a></li>
-        </ul>
-    </footer>
-
-    @* <footer class="border-top footer text-muted">
-        <div class="container-fluid" id="footerr">
-            <div class="d-flex justify-content-center align-items-center">
-                <div class="card text-center" style="width: 18rem; background-color: darkblue; opacity: 0.3;">
-                    <div class="card-body">
-                        <p>Lorem Ipsum@2024</p>
-                        <a asp-action="" asp-area="" asp-controller="">Policy</a>
-                        <a asp-action="" asp-area="" asp-controller="">Contact</a>
-                        <a asp-action="" asp-area="" asp-controller="">About</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer> *@
-
+    
+   
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

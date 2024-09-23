@@ -1,0 +1,40 @@
+﻿body {
+}
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+    top: 13px;
+}
+
+.red-text {
+    color: #FF4500;
+    font-family: 'Aladin', cursive;
+}
+
+.blue-text {
+    color: #1a4870;
+    font-family: 'Aladin', cursive;
+}
+
+.sandColor-text {
+    color: #cb8011;
+    font-family: 'Aladin', cursive;
+    
+}
+
+.button {
+    background-color: #1a4870;
+    color: azure;
+}
+
+    .button:hover {
+        background-color: seagreen;
+        color: lavender;
+    }
+
+
