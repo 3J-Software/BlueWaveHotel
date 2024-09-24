@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,80 +9,31 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BlueWaveHotel.styles.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Aladin&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/LayoutStyle.css" type="text/css" />
-    <style>
-        /* Arka plan rengi */
-        .custom-bg {
-            background-color: #FFF9D4; /* Soluk sarý arka plan */
-        }
+    <link rel="stylesheet" href="~/css/LayoutStyle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-        /* Logo stil ayarlarý */
-        .navbar-brand {
-            font-family: 'Brush Script MT', cursive;
-            font-size: 1.8rem;
-            color: #002D62; /* Mavi yazý rengi */
-            text-align: center;
-        }
-
-        .center-logo {
-            width: 220px;
-            margin-top: -10px;
-        }
-
-        /* Sol taraftaki Campaign, Reservation ve Rooms için stil */
-        .custom-left-link {
-            font-family: 'Aladin', cursive;
-            color: #e03e24 !important;
-            font-size: 1.8rem !important;
-            margin-right: 20px !important;
-        }
-
-            .custom-left-link:hover {
-                color: #FF4500; /* Hover ile turuncu geçiþ */
-                text-decoration: underline;
-            }
-
-        /* Saðdaki Login ve Register için stil */
-        .custom-right-link {
-            font-family: 'Aladin', cursive;
-            color: #1a4870 !important;
-            font-size: 1.8rem !important;
-            margin-left: 20px !important;
-        }
-
-            .custom-right-link:hover {
-                color: #FF4500; /* Hover ile turuncu geçiþ */
-                text-decoration: underline;
-            }
-    </style>
 </head>
-<body>
 
-
+<body class="d-flex flex-column min-vh-100">
     <header>
-
         <nav class="navbar navbar-expand-sm navbar-light custom-bg border-bottom box-shadow pt-3">
             <div class="container-fluid">
-
                 <a class="navbar-brand d-lg-none" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="/images/logo.png" alt="Logo" class="center-logo">
                 </a>
 
-                <!-- Hamburger Menu Icon for Mobile -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Navbar Content -->
                 <div class="collapse navbar-collapse" id="navbarContent">
-                    <!-- Left Links -->
                     <ul class="navbar-nav col-4 mx-auto">
                         <li> <a class="nav-link custom-left-link" asp-area="" asp-controller="Home" asp-action="Index">Campaign</a></li>
                         <li> <a class="nav-link custom-left-link" asp-area="" asp-controller="Reservation" asp-action="Index">Reservation</a></li>
                         <li> <a class="nav-link custom-left-link" asp-area="" asp-controller="Home" asp-action="Rooms">Rooms</a></li>
                     </ul>
                 </div>
-                <!-- Center Logo -->
 
                 <div class="d-none col-3 d-lg-block">
                     <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index">
@@ -89,30 +41,53 @@
                     </a>
                 </div>
 
-
                 <div class="collapse navbar-collapse" id="navbarContent">
-                    <!-- Left Links -->
                     <ul class="navbar-nav col-5 ">
                         <li> <a class="nav-link custom-right-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
                         <li> <a class="nav-link custom-right-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
                     </ul>
                 </div>
-
             </div>
-
         </nav>
     </header>
 
+    <main role="main" class="flex-grow-1 pb-3" >
+        @RenderBody()
+    </main>
 
+    <footer style="background-color:#cb8011;" class="border-top footer text-center text-white mt-auto">
+        <div class="container p-4 pb-0">
+            <section class="mb-4">
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="#!" role="button">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </section>
+        </div>
 
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    
-   
+        <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-white" href="#">BlueWaveHotel.com</a>
+            <ul class="d-flex justify-content-center no-bullets">
+                <li> <a href="~/Home/About" class="mx-3 no-underline footer-link" style="color:azure;">About Us</a> </li>
+                <li><a href="~/Home/Policy" class="mx-3 no-underline footer-link" style="color:azure">Policy</a></li>
+                <li> <a href="~/Home/Privacy" class="mx-3 no-underline footer-link" style="color:azure">Privacy</a></li>
+            </ul>
+        </div>
+    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
