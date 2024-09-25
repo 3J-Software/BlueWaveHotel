@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Campaigns";
+}
+
+<!-- CSS Dosyasını Bağla -->
+<link rel="stylesheet" href="~/css/campaigns.css" />
+
+<div class="container campaigns-container">
+    <div style="margin-top:70px;">
+        <h2 class="page-title">Campaigns</h2>
+
+        <div class="campaigns-grid">
+            <div class="card" onclick="window.location.href='/Campaigns/Campaign/1';">
+                <img src="~/images/photo1.jpg" class="card-img-top" alt="Ocean Breeze Getaway">
+                <div class="card-body">
+                    <h5 class="card-title">Ocean Breeze Getaway</h5>
+                    <p class="card-text">
+                        Escape to the serene beaches and enjoy exclusive discounts on ocean-view rooms. Includes complimentary breakfast and a sunset cruise for two.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card" onclick="window.location.href='/Campaigns/Campaign/2';">
+                <img src="~/images/photo2.jpg" class="card-img-top" alt="Relax & Rejuvenate Package">
+                <div class="card-body">
+                    <h5 class="card-title">Relax & Rejuvenate Package</h5>
+                    <p class="card-text">
+                        Pamper yourself with a full spa day, including massages, facials, and access to our wellness center. Perfect for those looking to unwind and refresh.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card" onclick="window.location.href='/Campaigns/Campaign/3';">
+                <img src="~/images/photo3.jpg" class="card-img-top" alt="Family Fun Adventure">
+                <div class="card-body">
+                    <h5 class="card-title">Family Fun Adventure</h5>
+                    <p class="card-text">
+                        Bring the whole family and take advantage of special rates on family suites. Includes kids’ club activities, free meals for children, and a day trip to the local water park.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

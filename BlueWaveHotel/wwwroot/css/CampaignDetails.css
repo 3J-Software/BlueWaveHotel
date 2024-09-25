@@ -1,0 +1,103 @@
+﻿/* General Styles for Campaign Detail Pages */
+.campaign-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+.campaign-header {
+    text-align: center;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 36px;
+    color: #b02b2c;
+    margin-bottom: 20px;
+}
+
+.campaign-image {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.campaign-content {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+    .campaign-content ul {
+        list-style-type: square;
+        margin: 20px 0;
+        padding-left: 20px;
+        font-size: 16px;
+        color: #555;
+    }
+
+        .campaign-content ul li {
+            margin-bottom: 10px;
+        }
+
+    .campaign-content p {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #666;
+    }
+
+/* Button Styles */
+.book-now-button {
+    display: block;
+    width: 200px;
+    margin: 30px auto;
+    padding: 10px;
+    background-color: yellowgreen;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+    .book-now-button:hover {
+        background-color: #1f591f;
+        color: white;
+    }
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    .campaign-container {
+        padding: 10px;
+    }
+
+    .campaign-header {
+        font-size: 28px;
+    }
+
+    .campaign-content {
+        font-size: 16px;
+    }
+
+        .campaign-content ul {
+            font-size: 14px;
+        }
+}
+
+@media (max-width: 480px) {
+    .campaign-header {
+        font-size: 24px;
+    }
+
+    .campaign-content {
+        font-size: 14px;
+    }
+
+    .book-now-button {
+        width: 100%;
+        font-size: 16px;
+    }
+}

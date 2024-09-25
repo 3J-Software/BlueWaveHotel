@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Rooms";
+}
+
+<link rel="stylesheet" href="~/css/rooms.css" />
+
+<div class="rooms-container">
+    <h2 class="page-title">Our Rooms</h2>
+
+    <div class="rooms-grid">
+        <div class="room-card" onclick="window.location.href='/Rooms/Details/1';">
+            <img src="~/images/room1.jpg" alt="Room 1" class="room-image" />
+            <div class="room-info">
+                <h3>1 Room</h3>
+                <p>A cozy single room, perfect for individual travelers looking for privacy and comfort.</p>
+            </div>
+        </div>
+
+        <div class="room-card" onclick="window.location.href='/Rooms/Details/2';">
+            <img src="~/images/room2.jpg" alt="Room 2" class="room-image" />
+            <div class="room-info">
+                <h3>1+1 Room</h3>
+                <p>A spacious room with a separate living area, ideal for couples or two friends.</p>
+            </div>
+        </div>
+
+        <div class="room-card" onclick="window.location.href='/Rooms/Details/3';">
+            <img src="~/images/room3.jpg" alt="Room 3" class="room-image" />
+            <div class="room-info">
+                <h3>2 Room</h3>
+                <p>A large, comfortable room with a double bed, suitable for couples.</p>
+            </div>
+        </div>
+
+        <div class="room-card" onclick="window.location.href='/Rooms/Details/4';">
+            <img src="~/images/room4.jpg" alt="Room 4" class="room-image" />
+            <div class="room-info">
+                <h3>2+1 Room</h3>
+                <p>A family-friendly room with one double bed and an additional single bed for extra comfort.</p>
+            </div>
+        </div>
+
+        <div class="room-card" onclick="window.location.href='/Rooms/Details/5';">
+            <img src="~/images/room5.jpg" alt="King Suite" class="room-image" />
+            <div class="room-info">
+                <h3>King Suite</h3>
+                <p>A luxurious king suite featuring a spacious layout, sea view, and premium amenities.</p>
+            </div>
+        </div>
+
+    </div>
+</div>

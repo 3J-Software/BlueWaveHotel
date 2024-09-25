@@ -2,26 +2,22 @@
 
 namespace BlueWaveHotel.Controllers
 {
-    public class RoomsController : Controller
+    public class CampaignsController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Details(int id)
+        public IActionResult Campaign(int id)
         {
             switch (id)
             {
                 case 1:
-                    return View("Details1");
+                    return View("Campaign1");
                 case 2:
-                    return View("Details2");
+                    return View("Campaign2");
                 case 3:
-                    return View("Details3");
-                case 4:
-                    return View("Details4");
-                case 5:
-                    return View("Details5");
+                    return View("Campaign3");
                 default:
                     return NotFound();
             }
