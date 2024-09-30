@@ -1,6 +1,6 @@
-﻿
-<script src="https://kit.fontawesome.com/75900aeb22.js" crossorigin="anonymous"></script>
-
+﻿﻿<script src="https://kit.fontawesome.com/75900aeb22.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <style>
     .rezinfoItem {
         display: flex;
@@ -58,20 +58,170 @@
         height: 40px; /* Buton yüksekliği */
         font-size: 1.125rem; /* Buton yazı boyutu */
     }
+
+    .header {
+        background-color: #FFF9D4;
+        padding: 15px;
+        color: #e03e24;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        border-radius: 10px 10px 0 0;
+        cursor: pointer;
+    }
+
+    .tabs {
+        display: flex;
+        justify-content: space-around;
+        background-color: #f7f7f7;
+        padding: 10px 0;
+        border-bottom: 2px solid #FFF9D4;
+    }
+
+    .tab {
+        padding: 10px 20px;
+        border: 1px solid #FFF9D4;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #e03e24;
+    }
+
+        .tab.active {
+            background-color: #FFF9D4;
+            color: #e03e24;
+        }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+        .buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+    .available {
+        background-color: green;
+    }
+
+    .unavailable {
+        background-color: red;
+    }
+
+    .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+        margin: 20px 0;
+    }
+
+        .calendar .day {
+            padding: 20px;
+            text-align: center;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+            font-size: 18px;
+            position: relative;
+        }
+
+            .calendar .day.unavailable {
+                background-color: #f54242;
+                color: white;
+            }
+
+            .calendar .day.available {
+                background-color: #42f554;
+                color: white;
+            }
+
+    .price {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        font-size: 14px;
+        color: #000;
+    }
+
+    #Head:hover {
+        cursor: pointer;
+        background-color: aqua;
+        color: crimson;
+    }
+
+    .textt {
+        padding-top: 20%;
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+        font-family: 'Aladin', cursive;
+        color: #e03e24;
+        font-size: 1.4rem;
+    }
+
+        .textt p {
+            color: #1a4870;
+            font-size: 1.6rem;
+        }
+
+    .reservationMenu {
+        max-width: 100%;
+        max-height: 100%;
+        color: #e03e24;
+        font-family: 'Aladin', cursive;
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 1.5rem;
+        border-bottom: 2px solid #808080;
+    }
+
+    .row2 {
+        margin-bottom: 50px;
+    }
+
+        .row2:hover {
+            cursor: pointer;
+        }
 </style>
-<div class="container mt-4">
-    <div class="card">
-        <div class="card-body">
-        </div>
-        <div class="card-body">
-            <div class="card-text"></div>
-        </div>
 
+<div class="container mt-4 ">
+    <div class="row" style="margin-bottom:20px;">
+        <div class="col-md-8 col-sm-8 col-lg-8">
+            <div class="card-body">
+                <img src="~/images/receptionists-elegant-suits-work-hours.jpg" style="max-width:100%;max-height:100%;border-radius:10px;">
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-4">
+            <div class="card-body text-center">
+                <!-- text-center sınıfını ekledim -->
+                <div class="card-text textt">
+                    Welcome to <p>BlueWave Hotel!</p> <br>
+                    We’re delighted to have you here! Whether you’re visiting for business or leisure, our team is here to ensure you have a pleasant and comfortable experience.
+                    If there’s anything we can assist you with, please don’t hesitate to let us know. We hope you enjoy your time with us!
+                </div>
+            </div>
+        </div>
     </div>
-
+    <div class="row row2">
+        <div class="col-md-6 col-sm-6 col-lg-6">
+            <div class="reservationMenu">
+                Reservation
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6">
+            <div class="reservationMenu">
+                Extras
+            </div>
+        </div>
+    </div>
     <div class="row g-2 align-items-center">
-
-
         <!-- Giriş Tarihi -->
         <div class="col-md">
             <div class="rezinfoItem">
@@ -165,16 +315,56 @@
         </div>
     </div>
 </div>
-<div class="showCalendar activeIns show">
-    <i class="fade fa-calender"></i>
-    Müsaitlik Takvimi
-    <i id="calendaricon" class="fa fa-chevron-up" style="margin-left:10px;"></i>
-</div>
-<div class="calendarRoom">
-    <div class="roomTypeArea">
-        <div class="roomType active"></div>
+<div class="container mt-4 ">
+    <div class="header" id="Head">Müsaitlik Takvimi <i class="fa-solid fa-arrow-down"></i></div>
+    <div class="tabs">
+        <div class="tab active">Superior French</div>
+        <div class="tab">Deluxe French</div>
+        <div class="tab">Superior Twin</div>
+        <div class="tab">Deluxe Triple Room</div>
+        <div class="tab">Suit</div>
+    </div>
+    <div class="calendar">
+        <div class="day available">1<div class="price">$200</div></div>
+        <div class="day unavailable">2<div class="price">$200</div></div>
+        <div class="day available">3<div class="price">$200</div></div>
+        <div class="day available">4<div class="price">$200</div></div>
+        <div class="day available">5<div class="price">$200</div></div>
+        <div class="day available">6<div class="price">$200</div></div>
+        <div class="day available">7<div class="price">$200</div></div>
+        <div class="day available">8<div class="price">$200</div></div>
+        <div class="day available">9<div class="price">$200</div></div>
+        <div class="day available">10<div class="price">$200</div></div>
+        <div class="day available">11<div class="price">$200</div></div>
+        <div class="day available">12<div class="price">$200</div></div>
+        <div class="day available">13<div class="price">$200</div></div>
+        <div class="day available">14<div class="price">$200</div></div>
     </div>
 
+    <div class="tabs">
+        <div class="tab">Tab 1</div>
+        <div class="tab">Tab 2</div>
+        <div class="tab">Tab 3</div>
+    </div>
 
-    >
 </div>
+
+<!-- jQuery Kütüphanesini Dahil Et -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Sayfa yüklendiğinde ilgili elementleri gizle
+        $('.calendar').hide();
+        $('.tabs').hide();
+        $('.available').hide();
+        $('.unavailable').hide();
+
+        // Başlık tıklanınca elementleri göster/gizle
+        $("#Head").click(function () {
+            $('.calendar').toggle();
+            $('.tabs').toggle();
+            $('.available').toggle();
+            $('.unavailable').toggle();
+        });
+    });
+</script>
