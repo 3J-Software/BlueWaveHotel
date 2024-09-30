@@ -24,7 +24,7 @@ namespace BlueWaveHotel.Entities.DbContexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "Server=localhost;Database=BlueWaveDB;Uid=root;Pwd=asd123";
+            var connectionString = "Server=localhost;Database=BlueWaveDB;Uid=root;Pwd=Password187";
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 38));
             optionsBuilder.UseMySql(connectionString, serverVersion);
         }

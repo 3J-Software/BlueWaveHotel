@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace BlueWaveHotel.Entities.Migrations
 {
     /// <inheritdoc />
-    public partial class deneme : Migration
+    public partial class initDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -339,12 +341,13 @@ namespace BlueWaveHotel.Entities.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    floorId = table.Column<string>(type: "varchar(255)", nullable: false)
+                    floorID = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Status = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Capacity = table.Column<int>(type: "int", nullable: false),
-                    ReservationId = table.Column<string>(type: "varchar(255)", nullable: false)
+                    ReservationId = table.Column<int>(type: "int", nullable: true),
+                    ReservationId1 = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
@@ -352,17 +355,16 @@ namespace BlueWaveHotel.Entities.Migrations
                 {
                     table.PrimaryKey("PK_rooms", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_rooms_floors_floorId",
-                        column: x => x.floorId,
+                        name: "FK_rooms_floors_floorID",
+                        column: x => x.floorID,
                         principalTable: "floors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_rooms_reservations_ReservationId",
-                        column: x => x.ReservationId,
+                        name: "FK_rooms_reservations_ReservationId1",
+                        column: x => x.ReservationId1,
                         principalTable: "reservations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -473,6 +475,215 @@ namespace BlueWaveHotel.Entities.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.InsertData(
+                table: "bedTypes",
+                columns: new[] { "Id", "BedName", "CreatedTime" },
+                values: new object[,]
+                {
+                    { "1", "Single", new DateTime(2024, 9, 30, 12, 39, 35, 441, DateTimeKind.Local).AddTicks(6802) },
+                    { "2", "Double", new DateTime(2024, 9, 30, 12, 39, 35, 441, DateTimeKind.Local).AddTicks(6817) },
+                    { "3", "Single-L", new DateTime(2024, 9, 30, 12, 39, 35, 441, DateTimeKind.Local).AddTicks(6818) },
+                    { "4", "Double-L", new DateTime(2024, 9, 30, 12, 39, 35, 441, DateTimeKind.Local).AddTicks(6819) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "floors",
+                columns: new[] { "Id", "CreatedTime", "FloorNumber" },
+                values: new object[,]
+                {
+                    { "1", new DateTime(2024, 9, 30, 12, 39, 35, 442, DateTimeKind.Local).AddTicks(4718), "1" },
+                    { "2", new DateTime(2024, 9, 30, 12, 39, 35, 442, DateTimeKind.Local).AddTicks(4719), "2" },
+                    { "3", new DateTime(2024, 9, 30, 12, 39, 35, 442, DateTimeKind.Local).AddTicks(4720), "3" },
+                    { "4", new DateTime(2024, 9, 30, 12, 39, 35, 442, DateTimeKind.Local).AddTicks(4722), "4" },
+                    { "z", new DateTime(2024, 9, 30, 12, 39, 35, 442, DateTimeKind.Local).AddTicks(4703), "z" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "rooms",
+                columns: new[] { "Id", "Capacity", "CreatedTime", "ReservationId", "ReservationId1", "Status", "floorID" },
+                values: new object[,]
+                {
+                    { "1", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(121), null, null, "avaible", "1" },
+                    { "10", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(1294), null, null, "avaible", "1" },
+                    { "11", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(1410), null, null, "avaible", "1" },
+                    { "12", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(1512), null, null, "avaible", "1" },
+                    { "13", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(1608), null, null, "avaible", "1" },
+                    { "14", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(1704), null, null, "avaible", "1" },
+                    { "15", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(1808), null, null, "avaible", "1" },
+                    { "16", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(1905), null, null, "avaible", "1" },
+                    { "17", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(2001), null, null, "avaible", "1" },
+                    { "18", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(2110), null, null, "avaible", "1" },
+                    { "19", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(2209), null, null, "avaible", "1" },
+                    { "2", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(452), null, null, "avaible", "1" },
+                    { "20", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(2305), null, null, "avaible", "2" },
+                    { "21", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(2408), null, null, "avaible", "2" },
+                    { "22", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(2514), null, null, "avaible", "2" },
+                    { "23", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(2611), null, null, "avaible", "2" },
+                    { "24", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(2710), null, null, "avaible", "2" },
+                    { "25", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(2807), null, null, "avaible", "2" },
+                    { "26", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(2911), null, null, "avaible", "2" },
+                    { "27", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(3008), null, null, "avaible", "2" },
+                    { "28", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(3107), null, null, "avaible", "2" },
+                    { "29", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(3211), null, null, "avaible", "2" },
+                    { "3", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(567), null, null, "avaible", "1" },
+                    { "30", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(3311), null, null, "avaible", "2" },
+                    { "31", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(3418), null, null, "avaible", "2" },
+                    { "32", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(3520), null, null, "avaible", "2" },
+                    { "33", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(3626), null, null, "avaible", "2" },
+                    { "34", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(3728), null, null, "avaible", "2" },
+                    { "35", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(3826), null, null, "avaible", "2" },
+                    { "36", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(3933), null, null, "avaible", "2" },
+                    { "37", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(4031), null, null, "avaible", "2" },
+                    { "38", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(4128), null, null, "avaible", "2" },
+                    { "39", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(4225), null, null, "avaible", "2" },
+                    { "4", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(686), null, null, "avaible", "1" },
+                    { "40", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(4331), null, null, "avaible", "3" },
+                    { "41", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(4437), null, null, "avaible", "3" },
+                    { "42", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(4535), null, null, "avaible", "3" },
+                    { "43", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(4632), null, null, "avaible", "3" },
+                    { "44", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(4735), null, null, "avaible", "3" },
+                    { "45", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(4832), null, null, "avaible", "3" },
+                    { "46", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(4929), null, null, "avaible", "3" },
+                    { "47", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(5031), null, null, "avaible", "3" },
+                    { "48", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(5129), null, null, "avaible", "3" },
+                    { "49", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(5227), null, null, "avaible", "3" },
+                    { "5", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(786), null, null, "avaible", "1" },
+                    { "50", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(5324), null, null, "avaible", "3" },
+                    { "51", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(5440), null, null, "avaible", "3" },
+                    { "52", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(5545), null, null, "avaible", "3" },
+                    { "53", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(5644), null, null, "avaible", "3" },
+                    { "54", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(5746), null, null, "avaible", "3" },
+                    { "55", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(5856), null, null, "avaible", "3" },
+                    { "56", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(5957), null, null, "avaible", "3" },
+                    { "57", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(6055), null, null, "avaible", "3" },
+                    { "58", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(6162), null, null, "avaible", "3" },
+                    { "59", 3, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(6262), null, null, "avaible", "3" },
+                    { "6", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(887), null, null, "avaible", "1" },
+                    { "60", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(6364), null, null, "avaible", "4" },
+                    { "61", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(6471), null, null, "avaible", "4" },
+                    { "62", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(6579), null, null, "avaible", "4" },
+                    { "63", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(6680), null, null, "avaible", "4" },
+                    { "64", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(6780), null, null, "avaible", "4" },
+                    { "65", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(6888), null, null, "avaible", "4" },
+                    { "66", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(6989), null, null, "avaible", "4" },
+                    { "67", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(7084), null, null, "avaible", "4" },
+                    { "68", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(7181), null, null, "avaible", "4" },
+                    { "69", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(7290), null, null, "avaible", "4" },
+                    { "7", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(994), null, null, "avaible", "1" },
+                    { "70", 4, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(7393), null, null, "avaible", "4" },
+                    { "71", 4, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(7498), null, null, "avaible", "4" },
+                    { "72", 4, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(7607), null, null, "avaible", "4" },
+                    { "73", 4, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(7709), null, null, "avaible", "4" },
+                    { "74", 4, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(7809), null, null, "avaible", "4" },
+                    { "75", 4, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(7909), null, null, "avaible", "4" },
+                    { "76", 4, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(8016), null, null, "avaible", "4" },
+                    { "77", 2, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(8114), null, null, "avaible", "4" },
+                    { "8", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(1093), null, null, "avaible", "1" },
+                    { "9", 1, new DateTime(2024, 9, 30, 12, 39, 35, 444, DateTimeKind.Local).AddTicks(1191), null, null, "avaible", "1" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "BedTypeRoom",
+                columns: new[] { "bedTypesId", "roomsId" },
+                values: new object[,]
+                {
+                    { "1", "1" },
+                    { "1", "10" },
+                    { "1", "11" },
+                    { "1", "12" },
+                    { "1", "13" },
+                    { "1", "14" },
+                    { "1", "15" },
+                    { "1", "16" },
+                    { "1", "17" },
+                    { "1", "18" },
+                    { "1", "19" },
+                    { "1", "2" },
+                    { "1", "20" },
+                    { "1", "21" },
+                    { "1", "22" },
+                    { "1", "23" },
+                    { "1", "24" },
+                    { "1", "25" },
+                    { "1", "26" },
+                    { "1", "27" },
+                    { "1", "28" },
+                    { "1", "29" },
+                    { "1", "3" },
+                    { "1", "30" },
+                    { "1", "31" },
+                    { "1", "32" },
+                    { "1", "33" },
+                    { "1", "34" },
+                    { "1", "35" },
+                    { "1", "36" },
+                    { "1", "37" },
+                    { "1", "38" },
+                    { "1", "39" },
+                    { "1", "4" },
+                    { "1", "5" },
+                    { "1", "50" },
+                    { "1", "51" },
+                    { "1", "52" },
+                    { "1", "53" },
+                    { "1", "54" },
+                    { "1", "55" },
+                    { "1", "56" },
+                    { "1", "57" },
+                    { "1", "58" },
+                    { "1", "59" },
+                    { "1", "6" },
+                    { "1", "7" },
+                    { "1", "70" },
+                    { "1", "71" },
+                    { "1", "72" },
+                    { "1", "73" },
+                    { "1", "74" },
+                    { "1", "75" },
+                    { "1", "76" },
+                    { "1", "8" },
+                    { "1", "9" },
+                    { "2", "40" },
+                    { "2", "41" },
+                    { "2", "42" },
+                    { "2", "43" },
+                    { "2", "44" },
+                    { "2", "45" },
+                    { "2", "46" },
+                    { "2", "47" },
+                    { "2", "48" },
+                    { "2", "49" },
+                    { "2", "50" },
+                    { "2", "51" },
+                    { "2", "52" },
+                    { "2", "53" },
+                    { "2", "54" },
+                    { "2", "55" },
+                    { "2", "56" },
+                    { "2", "57" },
+                    { "2", "58" },
+                    { "2", "59" },
+                    { "2", "60" },
+                    { "2", "61" },
+                    { "2", "62" },
+                    { "2", "63" },
+                    { "2", "64" },
+                    { "2", "65" },
+                    { "2", "66" },
+                    { "2", "67" },
+                    { "2", "68" },
+                    { "2", "69" },
+                    { "2", "70" },
+                    { "2", "71" },
+                    { "2", "72" },
+                    { "2", "73" },
+                    { "2", "74" },
+                    { "2", "75" },
+                    { "2", "76" },
+                    { "3", "77" },
+                    { "4", "77" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BedTypeRoom_roomsId",
@@ -590,14 +801,14 @@ namespace BlueWaveHotel.Entities.Migrations
                 column: "packageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_rooms_floorId",
+                name: "IX_rooms_floorID",
                 table: "rooms",
-                column: "floorId");
+                column: "floorID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_rooms_ReservationId",
+                name: "IX_rooms_ReservationId1",
                 table: "rooms",
-                column: "ReservationId");
+                column: "ReservationId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_shifts_Name",

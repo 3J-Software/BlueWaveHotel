@@ -4,7 +4,7 @@ namespace BlueWaveHotel.Entities.Model.Concrete
 {
     public class Room : BaseEntity
     {
-
+        public string floorID { get; set; }
         public Floor floor { get; set; }
 
         public string Status { get; set; }
@@ -12,7 +12,8 @@ namespace BlueWaveHotel.Entities.Model.Concrete
 
         public int Capacity { get; set; }
 
-        public Reservation Reservation { get; set; }
+        public int? ReservationId { get; set; }
+        public Reservation? Reservation { get; set; }
 
 
     }
