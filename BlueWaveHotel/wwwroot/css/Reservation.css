@@ -1,6 +1,47 @@
 ﻿body {
 }
+.calendar-container {
+    width: 100%;
+    margin: 20px auto;
+}
 
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+    .calendar-table thead th {
+        background-color: #f7f7f7;
+        border: 1px solid #ddd;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+.date-row {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    font-weight: bold;
+}
+
+    .date-row th {
+        padding: 10px;
+    }
+
+.room-header {
+    width: 150px;
+}
+
+.calendar-table tbody td {
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+.room-name {
+    font-weight: bold;
+    text-align: left;
+    padding-left: 10px;
+}
 .rezinfoItem {
     display: flex;
     align-items: center;
@@ -199,3 +240,4 @@
     .row2:hover {
         cursor: pointer;
     }
+
