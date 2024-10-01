@@ -1,195 +1,7 @@
 ﻿﻿<script src="https://kit.fontawesome.com/75900aeb22.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-<style>
-	.rezinfoItem {
-		display: flex;
-		align-items: center;
-		position: relative;
-		flex-wrap: wrap;
-		position: relative;
-		border: 1px solid #d3d3d3;
-		border-radius: 5px;
-		width: 100%;
-		height: 50px;
-	}
-
-	.rezLabel {
-		margin-bottom: 0;
-		padding: 5px;
-		text-align: center;
-		display: flex;
-		position: absolute;
-		top: 0;
-		background: #fff;
-		width: fit-content;
-		top: -14px;
-		padding: 5px;
-		left: 5px;
-		z-index: 5;
-		align-items: center;
-	}
-	/* Input ve select elementleri için çerçeve kaldırma */
-	.form-control, .form-select {
-		border: none; /* Kenarlığı kaldırır */
-		box-shadow: none; /* Gölgeleri kaldırır */
-		height: 40px; /* Yükseklik */
-		padding-left: 10px; /* Sol boşluk */
-		padding-right: 10px; /* Sağ boşluk */
-		font-size: 1rem; /* Yazı boyutu */
-	}
-
-	/* Input grubu içindeki simge kutusu (span) için çerçeve kaldırma */
-	.input-group-text {
-		border: none; /* Kenarlığı kaldırır */
-		background-color: #f8f9fa; /* Arka plan rengi */
-		padding: 8px 12px; /* İçerik boşluğu */
-		font-size: 1.25rem; /* Simgelerin boyutu */
-		display: flex;
-		align-items: center; /* Simgeyi dikey olarak ortalar */
-		justify-content: center;
-		min-width: 45px; /* Simge kutusunun sabit genişliği */
-	}
-
-	/* Buton için çerçeve kaldırma */
-	.btn-primary {
-		border: none; /* Buton kenarlığını kaldırır */
-		background-color: #007bff; /* Buton arka plan rengi */
-		height: 40px; /* Buton yüksekliği */
-		font-size: 1.125rem; /* Buton yazı boyutu */
-	}
-
-	.header {
-		background-color: #FFF9D4;
-		padding: 15px;
-		color: #e03e24;
-		text-align: center;
-		font-size: 24px;
-		font-weight: bold;
-		border-radius: 10px 10px 0 0;
-		cursor: pointer;
-	}
-
-	.tabs {
-		display: flex;
-		justify-content: space-around;
-		background-color: #f7f7f7;
-		padding: 10px 0;
-		border-bottom: 2px solid #FFF9D4;
-	}
-
-	.tab {
-		padding: 10px 20px;
-		border: 1px solid #FFF9D4;
-		border-radius: 5px;
-		cursor: pointer;
-		color: #e03e24;
-	}
-
-		.tab.active {
-			background-color: #FFF9D4;
-			color: #e03e24;
-		}
-
-	.buttons {
-		display: flex;
-		justify-content: center;
-		margin: 20px 0;
-	}
-
-		.buttons button {
-			padding: 10px 20px;
-			margin: 0 10px;
-			border: none;
-			border-radius: 5px;
-			color: white;
-			font-size: 16px;
-			cursor: pointer;
-		}
-
-	.available {
-		background-color: green;
-	}
-
-	.unavailable {
-		background-color: red;
-	}
-
-	.calendar {
-		display: grid;
-		grid-template-columns: repeat(7, 1fr);
-		gap: 10px;
-		margin: 20px 0;
-	}
-
-		.calendar .day {
-			padding: 20px;
-			text-align: center;
-			background-color: #f7f7f7;
-			border-radius: 5px;
-			font-size: 18px;
-			position: relative;
-		}
-
-			.calendar .day.unavailable {
-				background-color: #f54242;
-				color: white;
-			}
-
-			.calendar .day.available {
-				background-color: #42f554;
-				color: white;
-			}
-
-	.price {
-		position: absolute;
-		bottom: 5px;
-		right: 5px;
-		font-size: 14px;
-		color: #000;
-	}
-
-	#Head:hover {
-		cursor: pointer;
-		background-color: aqua;
-		color: crimson;
-	}
-
-	.textt {
-		padding-top: 20%;
-		display: block;
-		text-align: center;
-		margin: 0 auto;
-		font-family: 'Aladin', cursive;
-		color: #e03e24;
-		font-size: 1.4rem;
-	}
-
-		.textt p {
-			color: #1a4870;
-			font-size: 1.6rem;
-		}
-
-	.reservationMenu {
-		max-width: 100%;
-		max-height: 100%;
-		color: #e03e24;
-		font-family: 'Aladin', cursive;
-		display: block;
-		text-align: center;
-		margin: 0 auto;
-		font-size: 1.5rem;
-		border-bottom: 2px solid #808080;
-	}
-
-	.row2 {
-		margin-bottom: 50px;
-	}
-
-		.row2:hover {
-			cursor: pointer;
-		}
-</style>
+<link href="~/css/Reservation.css" rel="stylesheet" />
 
 <div class="container mt-4 ">
 	<div class="row" style="margin-bottom:20px;">
@@ -228,7 +40,7 @@
 				<div class="rezLabel">
 					<i class="fa-solid fa-calendar-days"></i>
 				</div>
-				<input type="date" class="form-control" placeholder="Giriş Tarihi">
+				<input type="date" class="form-control">
 			</div>
 		</div>
 
@@ -238,7 +50,7 @@
 				<div class="rezLabel">
 					<i class="fa-solid fa-calendar-days"></i>
 				</div>
-				<input type="date" class="form-control" placeholder="Çıkış Tarihi">
+				<input type="date" class="form-control">
 			</div>
 		</div>
 
@@ -249,7 +61,7 @@
 					<i class="fa-solid fa-moon"></i>
 				</div>
 				<select class="form-select">
-					<option selected>Gece</option>
+					<option selected>Night</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -274,7 +86,7 @@
 					<i class="fa-solid fa-person"></i>
 				</div>
 				<select class="form-select">
-					<option selected>Yetişkin</option>
+					<option selected>Adult</option>
 					<option value="0">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -294,7 +106,7 @@
 					<i class="fa-solid fa-child"></i>
 				</div>
 				<select class="form-select">
-					<option selected>Çocuk</option>
+					<option selected>Child</option>
 					<option value="0">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -309,14 +121,14 @@
 
 		<!-- Rezervasyon Ara -->
 		<div class="col-md">
-			<button class="btn btn-primary w-100">
-				<i class="fa-solid fa-magnifying-glass"></i> Rezervasyon Ara
+			<button id="SearchButton" class="btn w-100">
+				<i class="fa-solid fa-magnifying-glass"></i> &nbsp; Search
 			</button>
 		</div>
 	</div>
 </div>
 <div class="container mt-4 ">
-	<div class="header" id="Head">Müsaitlik Takvimi <i class="fa-solid fa-arrow-down"></i></div>
+	<div class="header" id="Head">Reservation Calendar &nbsp;<i class="fa-solid fa-arrow-down"></i></div>
 	<div class="tabs">
 		<div class="tab active">Superior French</div>
 		<div class="tab">Deluxe French</div>
@@ -351,7 +163,7 @@
 
 
 
-<div class="container mt-4">
+<div id="OrderCard" class="container mt-4">
 	<div class="card mb-12 rounded-3">
 		<div class="row g-0">
 			<div class="col-md-4">
@@ -363,8 +175,8 @@
 					<h5 class="card-title">Room Name</h5>
 					<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 					<div class="row" style="margin-top:50px;">
-						<div class="col-8">
-							<div class="rezinfoItem" style="max-width:60%;">
+						<div class="col-4">
+							<div class="rezinfoItem" style="max-width:100%;">
 								<div class="rezLabel">
 									<i class="fa-solid fa-bed"></i>
 								</div>
@@ -384,13 +196,13 @@
 							</div>
 						</div>
 						<div class="col-4 align-items-center d-flex">
-							<div class="card-text " style="font-size:1.2rem; font-weight:bold;">1000₺</div>
+							<div class="card-text " style="font-size:1.4rem; font-weight:bold;">1000₺</div>
 						</div>
 					</div>
 
 					<!-- Buton kısmı -->
-					<div class="d-flex justify-content-center mt-3">
-						<button class="btn btn-success px-4 py-2" style="font-size: 1.1rem; border-radius: 10px;">Buy</button>
+					<div class="d-flex mt-3">
+						<button class="btn btn-success px-4 py-2" style="font-size: 1.2rem; border-radius: 10px;">Buy</button>
 					</div>
 
 				</div>
@@ -413,7 +225,6 @@
 </div>
 
 <!-- jQuery Kütüphanesini Dahil Et -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function () {
 		// Sayfa yüklendiğinde ilgili elementleri gizle
@@ -429,5 +240,16 @@
 			$('.available').toggle();
 			$('.unavailable').toggle();
 		});
+
+		$("#OrderCard").hide();
+
 	});
+
+	$("#SearchButton").on("click", function() {
+		$("#OrderCard").fadeIn("slow");
+	});
+
+
+
+
 </script>
