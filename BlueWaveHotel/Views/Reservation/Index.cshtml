@@ -1,6 +1,40 @@
 ﻿@{
-	var DateNow = DateTime.Now;
-	TimeSpan diffDate = DateNow.AddMonths(3) - DateNow;
+	var TimeNow = DateTime.Now;
+	int count = 0;
+	int nextMonth(DateTime TimeNow,int BackOrNext)
+	{
+		var Year = DateTime.Now.Year;
+		var Month = TimeNow.Month;
+		if (BackOrNext == 1)
+		{
+			// int monthDiff = ((DateTime.Now.AddMonths(3).Year - DateTime.Now.Year) * 12) + 
+			// DateTime.Now.AddMonths(3).Month - DateTime.Now.Month;
+			
+			if (Month == 12)
+				{
+				Month = 1;
+					Year = +1;
+				}
+				else
+				{
+				Month = +1;
+				}
+			return DateTime.DaysInMonth(Year, Month);
+		}
+		else 
+		{
+			if (Month == 1)
+			{
+				Month = 12;
+				Year = -1;
+			}
+			else
+			{
+				Month = +1;
+			}
+			return DateTime.DaysInMonth(Year, Month);
+		}
+	}
 }﻿
 
 <script src="https://kit.fontawesome.com/75900aeb22.js" crossorigin="anonymous"></script>
@@ -8,7 +42,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <link href="~/css/Reservation.css" rel="stylesheet" />
 
+<style>
+	.button-group{
+		display: flex;
+		justify-content: flex-end;
+		margin-top:10px;
+	}
 
+	#btnFirstHalf:hover{
+		cursor:pointer;
+		background-color:limegreen;
+	}
+
+	#btnSecondHalf:hover {
+		cursor: pointer;
+		background-color: limegreen;
+	}
+</style>
 <div class="container mt-4 ">
 	<div class="row" style="margin-bottom:20px;">
 		<div class="col-md-8 col-sm-8 col-lg-8">
@@ -138,7 +188,7 @@
 
 <div class="container mt-4 calendar-container">
 	<div class="header" id="Head">Reservation Calendar &nbsp;<i class="fa-solid fa-arrow-down"></i></div>
-	<table class="calendar-table">
+	<table class="calendar-table" id="firstTable">
 		<thead>
 			<tr>
 				<th rowspan="2" class="room-header">Rooms</th>
@@ -146,7 +196,7 @@
 			</tr>
 			<tr class="date-row">
 
-				@for (var i = 1; i <= 15; i++)
+				@for (var i = 1; i <= nextMonth(); i++)
 				{
 					<td>@i</td>
 				}
@@ -252,6 +302,12 @@
 			
 		</tbody>
 	</table>
+
+	
+	<div class="button-group">
+		<button id="btnFirstHalf" onclick="showFirstHalf()" style="background-color:#1a4870;" bu><i class="fa-solid fa-arrow-left fa-lg" style="color: white;"></i></button>
+		<button id="btnSecondHalf" onclick="showSecondHalf()" style="background-color:#1a4870;"><i class="fa-solid fa-arrow-right fa-lg" style="color: white;"></i></button>
+	</div>
 </div>
 
 
@@ -299,21 +355,13 @@
 
 				</div>
 			</div>
-
-
-
-
-
-
-				</div>
-			</div>
-			<div class="col-md-2">
-				<div class="card-body">
-				</div>
+		</div>
+	</div>
+		<div class="col-md-2">
+				<div class="card-body"></div>
 			</div>
 		</div>
 	</div>
-
 </div>
 
 <!-- jQuery Kütüphanesini Dahil Et -->
@@ -337,6 +385,27 @@
 	});
 
 
+	function showFirstHalf() {
+		document.getElementById("firstTable").style.display = "table"; // İlk tabloyu göster
+		document.getElementById("secondTable").style.display = "none";  // İkinci tabloyu gizle
+	}
 
+	function showSecondHalf() {
+		document.getElementById("firstTable").style.display = "none";  // İlk tabloyu gizle
+		document.getElementById("secondTable").style.display = "table"; // İkinci tabloyu göster
+	}
 
+	var count = 0;
+	$("#btnFirstHalf").click(function () {
+		count=+1;
+		if (count == 3) {
+			$("#btnFirstHalf").attr("disabled", true);
+		}
+	})
+	$("#btnSecondHalf").click(function () {
+		count = -1;
+		if (count == 1) {
+			$("#btnSecondHalf").attr("disabled", true);
+		}
+	})
 </script>
