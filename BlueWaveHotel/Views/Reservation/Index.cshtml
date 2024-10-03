@@ -1,40 +1,6 @@
-﻿@{
-	var TimeNow = DateTime.Now;
-	int count = 0;
-	int nextMonth(DateTime TimeNow,int BackOrNext)
-	{
-		var Year = DateTime.Now.Year;
-		var Month = TimeNow.Month;
-		if (BackOrNext == 1)
-		{
-			// int monthDiff = ((DateTime.Now.AddMonths(3).Year - DateTime.Now.Year) * 12) + 
-			// DateTime.Now.AddMonths(3).Month - DateTime.Now.Month;
-			
-			if (Month == 12)
-				{
-				Month = 1;
-					Year = +1;
-				}
-				else
-				{
-				Month = +1;
-				}
-			return DateTime.DaysInMonth(Year, Month);
-		}
-		else 
-		{
-			if (Month == 1)
-			{
-				Month = 12;
-				Year = -1;
-			}
-			else
-			{
-				Month = +1;
-			}
-			return DateTime.DaysInMonth(Year, Month);
-		}
-	}
+﻿@model ReservationViewModel;
+@{
+	
 }﻿
 
 <script src="https://kit.fontawesome.com/75900aeb22.js" crossorigin="anonymous"></script>
@@ -48,6 +14,12 @@
 		justify-content: flex-end;
 		margin-top:10px;
 	}
+
+	.button-group2 {
+		display: flex;
+		justify-content: flex-start;
+	}
+
 
 	#btnFirstHalf:hover{
 		cursor:pointer;
@@ -196,7 +168,7 @@
 			</tr>
 			<tr class="date-row">
 
-				@for (var i = 1; i <= nextMonth(); i++)
+				@for (var i = 1; i <= (Model.Days)/2; i++)
 				{
 					<td>@i</td>
 				}
@@ -207,106 +179,201 @@
 			<tr>
 				<td class="room-name">Single Room </td>
 				<td><i class="fa-solid fa-person"></i> 1</td>
-				@for (var i = 1; i <= diffDate.Days; i++)
+				@for (var i = 1; i <= (Model.Days) / 2; i++)
 				{
-					if (i !<= 15)
-					{
 						if (true)
 						{
-							<td style="background-color:lightgreen; color:white;">---₺</td>
+							<td style="background-color:lightgreen; color:white;">₺</td>
 						}
 						else
 						{
 							<td class="bg-danger">N</td>
 						}
-
-					}
 				}
 			</tr>
 				<tr>
 				<td class="room-name">Single Plus Room</td>
 				<td><i class="fa-solid fa-person"></i> 3</td>
-				@for (var i = 1; i <= diffDate.Days; i++)
+				@for (var i = 1; i <= (Model.Days) / 2; i++)
 				{
-					if (i !<= 15)
-					{
 						if (true)
 						{
-							<td style="background-color:lightgreen; color:white;">---₺</td>
+							<td style="background-color:lightgreen; color:white;">₺</td>
+						}
+						else
+						{
+							<td class="bg-danger">N</td>
+						}
+				}
+			</tr>
+			<tr>
+				<td class="room-name">Couple Room </td>
+				<td><i class="fa-solid fa-person"></i> 2</td>
+				@for (var i = 1; i <= (Model.Days) / 2; i++)
+				{
+						if (true)
+						{
+							<td style="background-color:lightgreen; color:white;">₺</td>
+						}
+						else
+						{
+							<td class="bg-danger">N</td>
+						}
+				}
+			</tr>
+			<tr>
+				<td class="room-name">Family Room</td>
+				<td><i class="fa-solid fa-person"></i> 3</td>
+				@for (var i = 1; i <= (Model.Days) / 2; i++)
+				{
+
+						if (true)
+						{
+							<td style="background-color:lightgreen; color:white;">₺</td>
 						}
 						else
 						{
 							<td class="bg-danger">N</td>
 						}
 
+				}
+			</tr>
+			<tr>
+				<td class="room-name">King Suit</td>
+				<td><i class="fa-solid fa-person"></i> 2</td>
+				@for (var i = 1; i <= (Model.Days) / 2; i++)
+				{
+
+						if (true)
+						{
+							<td style="background-color:lightgreen; color:white;">₺</td>
+						}
+						else
+						{
+							<td class="bg-danger">N</td>
+						}
+				}
+			</tr>
+			
+		</tbody>
+	</table>
+	<table class="calendar-table" id="secondTable">
+		<thead>
+			<tr>
+				<th rowspan="2" class="room-header">Rooms</th>
+				<th rowspan="2" class=""></th>
+			</tr>
+			<tr class="date-row">
+
+				@for (var i = ((Model.Days) / 2)+1; i <=Model.Days ; i++)
+				{
+					<td>@i</td>
+				}
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="room-name">Single Room </td>
+				<td><i class="fa-solid fa-person"></i> 1</td>
+				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
+				{
+					if (true)
+					{
+						<td style="background-color:lightgreen; color:white;">₺</td>
+					}
+					else
+					{
+						<td class="bg-danger">N</td>
+					}
+				}
+			</tr>
+			<tr>
+				<td class="room-name">Single Plus Room</td>
+				<td><i class="fa-solid fa-person"></i> 3</td>
+				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
+				{
+					if (true)
+					{
+						<td style="background-color:lightgreen; color:white;">₺</td>
+					}
+					else
+					{
+						<td class="bg-danger">N</td>
 					}
 				}
 			</tr>
 			<tr>
 				<td class="room-name">Couple Room </td>
 				<td><i class="fa-solid fa-person"></i> 2</td>
-				@for (var i = 1; i <= diffDate.Days; i++)
+				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
 				{
-					if (i! <= 15)
+					if (true)
 					{
-						if (true)
-						{
-							<td style="background-color:lightgreen; color:white;">---₺</td>
-						}
-						else
-						{
-							<td class="bg-danger">N</td>
-						}
-
+						<td style="background-color:lightgreen; color:white;">₺</td>
+					}
+					else
+					{
+						<td class="bg-danger">N</td>
 					}
 				}
 			</tr>
 			<tr>
 				<td class="room-name">Family Room</td>
 				<td><i class="fa-solid fa-person"></i> 3</td>
-				@for (var i = 1; i <= diffDate.Days; i++)
+				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
 				{
-					if (i! <= 15)
-					{
-						if (true)
-						{
-							<td style="background-color:lightgreen; color:white;">---₺</td>
-						}
-						else
-						{
-							<td class="bg-danger">N</td>
-						}
 
+					if (true)
+					{
+						<td style="background-color:lightgreen; color:white;">₺</td>
 					}
+					else
+					{
+						<td class="bg-danger">N</td>
+					}
+
 				}
 			</tr>
 			<tr>
 				<td class="room-name">King Suit</td>
 				<td><i class="fa-solid fa-person"></i> 2</td>
-				@for (var i = 1; i <= diffDate.Days; i++)
+				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
 				{
-					if (i! <= 15)
-					{
-						if (true)
-						{
-							<td style="background-color:lightgreen; color:white;">---₺</td>
-						}
-						else
-						{
-							<td class="bg-danger">N</td>
-						}
 
+					if (true)
+					{
+						<td style="background-color:lightgreen; color:white;">₺</td>
+					}
+					else
+					{
+						<td class="bg-danger">N</td>
 					}
 				}
 			</tr>
-			
+
 		</tbody>
 	</table>
-
+	
 	
 	<div class="button-group">
-		<button id="btnFirstHalf" onclick="showFirstHalf()" style="background-color:#1a4870;" bu><i class="fa-solid fa-arrow-left fa-lg" style="color: white;"></i></button>
-		<button id="btnSecondHalf" onclick="showSecondHalf()" style="background-color:#1a4870;"><i class="fa-solid fa-arrow-right fa-lg" style="color: white;"></i></button>
+		<button id="btnFirstHalf" onclick="showFirstHalf()" style="background-color:#1a4870;">
+			<i class="fa-solid fa-arrow-left fa-lg" style="color: white;"></i>
+		</button>
+		
+		<button id="btnSecondHalf" onclick="showSecondHalf()" style="background-color:#1a4870;" >
+			<i class="fa-solid fa-arrow-right fa-lg" style="color: white;"></i>
+		</button>
+	</div>
+	<div class="button-group2">
+		<form asp-action="Index" asp-controller="Reservation" method="get">
+			<button style="background-color:#1a4870;" asp-route-id="-1" type="submit">
+				<i class="fa-solid fa-arrow-left fa-lg" style="color: white;">Previous Month</i>
+			</button>
+			<button style="background-color:#1a4870;" asp-route-id="1" type="submit">
+				<i class="fa-solid fa-arrow-right fa-lg" style="color: white;">Next Month</i>
+			</button>
+		</form>
 	</div>
 </div>
 
@@ -357,28 +424,25 @@
 			</div>
 		</div>
 	</div>
-		<div class="col-md-2">
+	<div class="col-md-2">
 				<div class="card-body"></div>
 			</div>
-		</div>
-	</div>
 </div>
+
 
 <!-- jQuery Kütüphanesini Dahil Et -->
 <script>
+
+	var count = 0;
 	$(document).ready(function () {
 		// Sayfa yüklendiğinde ilgili elementleri gizle
-		$('.calendar-table').hide();
-
-		// Başlık tıklanınca elementleri göster/gizle
-		$("#Head").click(function () {
-			$('.calendar-table').toggle();
-
-		});
-
+		$("#firstTable").hide();
+		$("#secondTable").hide();
 		$("#OrderCard").hide();
-
-	});
+		});
+		$("#Head").click(function () {
+			$("#firstTable").toggle();
+		});
 
 	$("#SearchButton").on("click", function() {
 		$("#OrderCard").fadeIn("slow");
@@ -386,16 +450,16 @@
 
 
 	function showFirstHalf() {
-		document.getElementById("firstTable").style.display = "table"; // İlk tabloyu göster
-		document.getElementById("secondTable").style.display = "none";  // İkinci tabloyu gizle
+		$("#firstTable").show();  // İlk tabloyu göster
+		$("#secondTable").hide();  // İkinci tabloyu gizle
 	}
 
 	function showSecondHalf() {
-		document.getElementById("firstTable").style.display = "none";  // İlk tabloyu gizle
-		document.getElementById("secondTable").style.display = "table"; // İkinci tabloyu göster
+		$("#firstTable").hide();  // İlk tabloyu göster
+		$("#secondTable").show(); // İkinci tabloyu gizle
 	}
 
-	var count = 0;
+
 	$("#btnFirstHalf").click(function () {
 		count=+1;
 		if (count == 3) {
