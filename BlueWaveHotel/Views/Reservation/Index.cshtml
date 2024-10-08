@@ -1,6 +1,6 @@
 ﻿@model ReservationViewModel;
 @{
-	
+	var NextTime = Model.ResultTime;
 }﻿
 
 <script src="https://kit.fontawesome.com/75900aeb22.js" crossorigin="anonymous"></script>
@@ -164,7 +164,7 @@
 		<thead>
 			<tr>
 				<th rowspan="2" class="room-header">Rooms</th>
-				<th rowspan="2" class=""></th>
+				<th rowspan="2" class="">@Model.Month<br />@Model.Year</th>
 			</tr>
 			<tr class="date-row">
 
@@ -261,7 +261,7 @@
 		<thead>
 			<tr>
 				<th rowspan="2" class="room-header">Rooms</th>
-				<th rowspan="2" class=""></th>
+				<th rowspan="2" class="">@Model.Month<br />@Model.Year</th>
 			</tr>
 			<tr class="date-row">
 
@@ -366,17 +366,21 @@
 		</button>
 	</div>
 	<div class="button-group2">
-		<form asp-action="Index" asp-controller="Reservation" method="get">
-			<button style="background-color:#1a4870;" asp-route-id="-1" type="submit">
-				<i class="fa-solid fa-arrow-left fa-lg" style="color: white;">Previous Month</i>
+		<form asp-action="Index" method="post" >
+			<input  type="hidden" asp-for="TimeNow" value="@NextTime" />
+			<button style="background-color:#1a4870;" asp-route-id="-1" type="submit" >
+				<i class="fa-solid fa-arrow-left fa-lg" style="color: white;"></i>Previous Month 
 			</button>
+		</form>
+
+		<form asp-action="Index" method="post">
+			<input type="hidden" asp-for="TimeNow" value="@NextTime" />
 			<button style="background-color:#1a4870;" asp-route-id="1" type="submit">
-				<i class="fa-solid fa-arrow-right fa-lg" style="color: white;">Next Month</i>
+				<i class="fa-solid fa-arrow-right fa-lg" style="color: white;"></i>Next Month
 			</button>
 		</form>
 	</div>
 </div>
-
 
 <div id="OrderCard" class="container mt-4">
 	<div class="card mb-12 rounded-3">
@@ -472,4 +476,5 @@
 			$("#btnSecondHalf").attr("disabled", true);
 		}
 	})
+
 </script>
