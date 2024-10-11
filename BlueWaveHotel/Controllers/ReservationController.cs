@@ -38,9 +38,10 @@ namespace BlueWaveHotel.Controllers
 				Month = currentMonth,
 				Year = currentYear
 			};
-			return View(model);
-		}
 
+			// Ajax için JSON olarak dönelim
+			return Json(model);
+		}
 		int DaysInnextMonth(DateTime TimeNow, int BackOrNext)
 		{
 			var Year = TimeNow.Year;

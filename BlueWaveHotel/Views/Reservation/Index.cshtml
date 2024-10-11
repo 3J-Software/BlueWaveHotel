@@ -1,7 +1,5 @@
 ﻿@model ReservationViewModel;
-@{
-	var NextTime = Model.ResultTime;
-}﻿
+
 
 <script src="https://kit.fontawesome.com/75900aeb22.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
@@ -158,229 +156,7 @@
 
 
 
-<div class="container mt-4 calendar-container">
-	<div class="header" id="Head">Reservation Calendar &nbsp;<i class="fa-solid fa-arrow-down"></i></div>
-	<table class="calendar-table" id="firstTable">
-		<thead>
-			<tr>
-				<th rowspan="2" class="room-header">Rooms</th>
-				<th rowspan="2" class="">@Model.Month<br />@Model.Year</th>
-			</tr>
-			<tr class="date-row">
-
-				@for (var i = 1; i <= (Model.Days)/2; i++)
-				{
-					<td>@i</td>
-				}
-				
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="room-name">Single Room </td>
-				<td><i class="fa-solid fa-person"></i> 1</td>
-				@for (var i = 1; i <= (Model.Days) / 2; i++)
-				{
-						if (true)
-						{
-							<td style="background-color:lightgreen; color:white;">₺</td>
-						}
-						else
-						{
-							<td class="bg-danger">N</td>
-						}
-				}
-			</tr>
-				<tr>
-				<td class="room-name">Single Plus Room</td>
-				<td><i class="fa-solid fa-person"></i> 3</td>
-				@for (var i = 1; i <= (Model.Days) / 2; i++)
-				{
-						if (true)
-						{
-							<td style="background-color:lightgreen; color:white;">₺</td>
-						}
-						else
-						{
-							<td class="bg-danger">N</td>
-						}
-				}
-			</tr>
-			<tr>
-				<td class="room-name">Couple Room </td>
-				<td><i class="fa-solid fa-person"></i> 2</td>
-				@for (var i = 1; i <= (Model.Days) / 2; i++)
-				{
-						if (true)
-						{
-							<td style="background-color:lightgreen; color:white;">₺</td>
-						}
-						else
-						{
-							<td class="bg-danger">N</td>
-						}
-				}
-			</tr>
-			<tr>
-				<td class="room-name">Family Room</td>
-				<td><i class="fa-solid fa-person"></i> 3</td>
-				@for (var i = 1; i <= (Model.Days) / 2; i++)
-				{
-
-						if (true)
-						{
-							<td style="background-color:lightgreen; color:white;">₺</td>
-						}
-						else
-						{
-							<td class="bg-danger">N</td>
-						}
-
-				}
-			</tr>
-			<tr>
-				<td class="room-name">King Suit</td>
-				<td><i class="fa-solid fa-person"></i> 2</td>
-				@for (var i = 1; i <= (Model.Days) / 2; i++)
-				{
-
-						if (true)
-						{
-							<td style="background-color:lightgreen; color:white;">₺</td>
-						}
-						else
-						{
-							<td class="bg-danger">N</td>
-						}
-				}
-			</tr>
-			
-		</tbody>
-	</table>
-	<table class="calendar-table" id="secondTable">
-		<thead>
-			<tr>
-				<th rowspan="2" class="room-header">Rooms</th>
-				<th rowspan="2" class="">@Model.Month<br />@Model.Year</th>
-			</tr>
-			<tr class="date-row">
-
-				@for (var i = ((Model.Days) / 2)+1; i <=Model.Days ; i++)
-				{
-					<td>@i</td>
-				}
-
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="room-name">Single Room </td>
-				<td><i class="fa-solid fa-person"></i> 1</td>
-				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
-				{
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-				}
-			</tr>
-			<tr>
-				<td class="room-name">Single Plus Room</td>
-				<td><i class="fa-solid fa-person"></i> 3</td>
-				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
-				{
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-				}
-			</tr>
-			<tr>
-				<td class="room-name">Couple Room </td>
-				<td><i class="fa-solid fa-person"></i> 2</td>
-				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
-				{
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-				}
-			</tr>
-			<tr>
-				<td class="room-name">Family Room</td>
-				<td><i class="fa-solid fa-person"></i> 3</td>
-				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
-				{
-
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-
-				}
-			</tr>
-			<tr>
-				<td class="room-name">King Suit</td>
-				<td><i class="fa-solid fa-person"></i> 2</td>
-				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
-				{
-
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-				}
-			</tr>
-
-		</tbody>
-	</table>
-	
-	
-	<div class="button-group">
-		<button id="btnFirstHalf" onclick="showFirstHalf()" style="background-color:#1a4870;">
-			<i class="fa-solid fa-arrow-left fa-lg" style="color: white;"></i>
-		</button>
-		
-		<button id="btnSecondHalf" onclick="showSecondHalf()" style="background-color:#1a4870;" >
-			<i class="fa-solid fa-arrow-right fa-lg" style="color: white;"></i>
-		</button>
-	</div>
-	<div class="button-group2">
-		<form asp-action="Index" method="post" >
-			<input  type="hidden" asp-for="TimeNow" value="@NextTime" />
-			<button style="background-color:#1a4870;" asp-route-id="-1" type="submit" >
-				<i class="fa-solid fa-arrow-left fa-lg" style="color: white;"></i>Previous Month 
-			</button>
-		</form>
-
-		<form asp-action="Index" method="post">
-			<input type="hidden" asp-for="TimeNow" value="@NextTime" />
-			<button style="background-color:#1a4870;" asp-route-id="1" type="submit">
-				<i class="fa-solid fa-arrow-right fa-lg" style="color: white;"></i>Next Month
-			</button>
-		</form>
-	</div>
-</div>
+<partial name="_Calendar" model="@Model" />
 
 <div id="OrderCard" class="container mt-4">
 	<div class="card mb-12 rounded-3">
@@ -429,52 +205,16 @@
 		</div>
 	</div>
 	<div class="col-md-2">
-				<div class="card-body"></div>
-			</div>
+		<div class="card-body"></div>
+	</div>
 </div>
 
-
-<!-- jQuery Kütüphanesini Dahil Et -->
 <script>
-
-	var count = 0;
 	$(document).ready(function () {
-		// Sayfa yüklendiğinde ilgili elementleri gizle
-		$("#firstTable").hide();
-		$("#secondTable").hide();
 		$("#OrderCard").hide();
-		});
-		$("#Head").click(function () {
-			$("#firstTable").toggle();
-		});
+	});
 
 	$("#SearchButton").on("click", function() {
 		$("#OrderCard").fadeIn("slow");
 	});
-
-
-	function showFirstHalf() {
-		$("#firstTable").show();  // İlk tabloyu göster
-		$("#secondTable").hide();  // İkinci tabloyu gizle
-	}
-
-	function showSecondHalf() {
-		$("#firstTable").hide();  // İlk tabloyu göster
-		$("#secondTable").show(); // İkinci tabloyu gizle
-	}
-
-
-	$("#btnFirstHalf").click(function () {
-		count=+1;
-		if (count == 3) {
-			$("#btnFirstHalf").attr("disabled", true);
-		}
-	})
-	$("#btnSecondHalf").click(function () {
-		count = -1;
-		if (count == 1) {
-			$("#btnSecondHalf").attr("disabled", true);
-		}
-	})
-
 </script>
