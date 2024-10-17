@@ -98,7 +98,6 @@
 					}
 				}
 			</tr>
-
 		</tbody>
 	</table>
 	<table class="calendar-table" id="secondTable">
@@ -195,21 +194,11 @@
 					}
 				}
 			</tr>
-
 		</tbody>
 	</table>
 
 
 	<div class="button-group">
-		<button id="btnFirstHalf" onclick="showFirstHalf()" style="background-color:#1a4870;">
-			<i class="fa-solid fa-arrow-left fa-lg" style="color: white;"></i>
-		</button>
-
-		<button id="btnSecondHalf" onclick="showSecondHalf()" style="background-color:#1a4870;">
-			<i class="fa-solid fa-arrow-right fa-lg" style="color: white;"></i>
-		</button>
-	</div>
-	<div class="button-group2">
 			<button style="background-color:#1a4870;" type="button" class="btnPre" onclick="ReCalendar(-1,@NextTime)">
 				<i class="fa-solid fa-arrow-left fa-lg" style="color: white;"></i> Previous Month
 			</button>
@@ -227,20 +216,14 @@
 		$("#firstTable").hide();
 		$("#secondTable").hide();
 		$("#OrderCard").hide();
+		$(".button-group").hide();
 	});
 	$("#Head").click(function () {
 		$("#firstTable").toggle();
-		$("#secondTable").hide();
+		$("#secondTable").toggle();
+		$(".button-group").toggle();
 	});
-	function showFirstHalf() {
-		$("#firstTable").show();  // İlk tabloyu göster
-		$("#secondTable").hide();  // İkinci tabloyu gizle
-	}
-	function showSecondHalf() {
-		
-		$("#firstTable").hide();  // İlk tabloyu göster
-		$("#secondTable").show(); // İkinci tabloyu gizle
-	}
+
 	$("#btnFirstHalf").click(function () {
 		count = +1;
 		if (count == 3) {
@@ -254,24 +237,4 @@
 		}
 	})
 
-	function ReCalendar(direction,Time){
-		var process = {
-			TimeNow: $("input[name='TimeNow']").val(),
-			Id: direction
-		};
-		$.ajax({
-			url: '@Url.Action("Index","Reservation")',
-			type: 'POST',
-			dataType:'json',
-			data: process,
-			success: function (data) {
-				$('#Head').html(data);
-
-
-
-
-			}
-			
-		});
-	}
 </script>
