@@ -2,10 +2,9 @@
 {
 	public class ReservationViewModel
 	{
-		public int Days { get; set; }
-		public string Month { get; set; }
-		public int Year { get; set; }
-		public DateTime TimeNow { get; set; }
-		public DateTime ResultTime { get; set; }
+		public List<int> Days { get; set; } = new List<int>();
+		public List<string> Month { get; set; } = new List<string>();
+		public List<int> Year { get; set; } = new List<int>();
 	}
+
 }

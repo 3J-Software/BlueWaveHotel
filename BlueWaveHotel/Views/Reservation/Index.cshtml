@@ -1,10 +1,11 @@
 ﻿@model ReservationViewModel;
 
-
 <script src="https://kit.fontawesome.com/75900aeb22.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="~/css/Reservation.css" rel="stylesheet" />
+
 
 <style>
 	.button-group{
@@ -21,6 +22,15 @@
 	#btnSecondHalf:hover {
 		cursor: pointer;
 		background-color: limegreen;
+	}
+
+	.modal-lg {
+		max-width: 90% !important; /* Modal genişliğini %90 yap */
+		height: 90% !important; /* Yüksekliği de %90 yap */
+	}
+
+	.modal-content {
+		height: 100%; /* İçeriğin yüksekliğini tam yap */
 	}
 </style>
 <div class="container mt-4 ">
@@ -148,9 +158,28 @@
 	</div>
 </div>
 
-
-
-<partial name="_Calendar" model="@Model" />
+<div class="container mt-4 calendar-container">
+	<div class="header" id="Head" data-bs-toggle="modal" data-bs-target="#calendarModal">
+	  Reservation Calendar &nbsp;<i class="fa-solid fa-arrow-down"></i>
+	</div>
+</div>
+<div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-xl" style="max-width: 90%; max-height: 80%;">
+		<div class="modal-content" style="height: 100%;">
+			<div class="modal-header">
+				<h5 class="modal-title" id="calendarModalLabel">Takvim</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body" style="overflow-y: auto;">
+				<!-- Calendar partial view'in burada render edilmesi -->
+				<partial name="_Calendar" model="@Model" />
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <div id="OrderCard" class="container mt-4">
 	<div class="card mb-12 rounded-3">
@@ -204,11 +233,13 @@
 </div>
 
 <script>
+
 	$(document).ready(function () {
 		$("#OrderCard").hide();
 	});
 
-	$("#SearchButton").on("click", function() {
+	$("#SearchButton").on("click", function () {
 		$("#OrderCard").fadeIn("slow");
 	});
+
 </script>

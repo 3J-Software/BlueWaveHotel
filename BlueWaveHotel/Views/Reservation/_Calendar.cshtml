@@ -1,240 +1,112 @@
 ﻿@model ReservationViewModel;
 @{
-	var NextTime = Model.ResultTime;
-}﻿
-<div class="container mt-4 calendar-container">
-	<div class="header" id="Head">Reservation Calendar &nbsp;<i class="fa-solid fa-arrow-down"></i></div>
+	List<int> day = Model.Days;
+	List<string> month = Model.Month;
+	List<int> year = Model.Year;
+}
+
+
+@for (var j = 0; j < 3; j++)
+{
 	<table class="calendar-table" id="firstTable">
-		<thead>
-			<tr>
-				<th rowspan="2" class="room-header">Rooms</th>
-				<th rowspan="2" class="">@Model.Month<br />@Model.Year</th>
-			</tr>
-			<tr class="date-row">
+			<thead>
+				<tr>
+					<th rowspan="2" class="room-header">Rooms</th>
+					<th rowspan="2" class="">@month[j]<br />@year[j]</th>
+				</tr>
+				<tr class="date-row">
 
-				@for (var i = 1; i <= (Model.Days) / 2; i++)
-				{
-					<td>@i</td>
-				}
-
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="room-name">Single Room </td>
-				<td><i class="fa-solid fa-person"></i> 1</td>
-				@for (var i = 1; i <= (Model.Days) / 2; i++)
-				{
-					if (true)
+					@for (var i = 1; i <= day[j]; i++)
 					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-				}
-			</tr>
-			<tr>
-				<td class="room-name">Single Plus Room</td>
-				<td><i class="fa-solid fa-person"></i> 3</td>
-				@for (var i = 1; i <= (Model.Days) / 2; i++)
-				{
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-				}
-			</tr>
-			<tr>
-				<td class="room-name">Couple Room </td>
-				<td><i class="fa-solid fa-person"></i> 2</td>
-				@for (var i = 1; i <= (Model.Days) / 2; i++)
-				{
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-				}
-			</tr>
-			<tr>
-				<td class="room-name">Family Room</td>
-				<td><i class="fa-solid fa-person"></i> 3</td>
-				@for (var i = 1; i <= (Model.Days) / 2; i++)
-				{
-
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
+						<td>@i</td>
 					}
 
-				}
-			</tr>
-			<tr>
-				<td class="room-name">King Suit</td>
-				<td><i class="fa-solid fa-person"></i> 2</td>
-				@for (var i = 1; i <= (Model.Days) / 2; i++)
-				{
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="room-name">Single Room </td>
+					<td><i class="fa-solid fa-person"></i> 1</td>
+					@for (var i = 1; i <= day[j]; i++)
+					{
+						if (true)
+						{
+							<td style="background-color:lightgreen; color:white;">₺</td>
+						}
+						else
+						{
+							<td class="bg-danger">N</td>
+						}
+					}
+				</tr>
+				<tr>
+					<td class="room-name">Single Plus Room</td>
+					<td><i class="fa-solid fa-person"></i> 3</td>
+					@for (var i = 1; i <= day[j]; i++)
+					{
+						if (true)
+						{
+							<td style="background-color:lightgreen; color:white;">₺</td>
+						}
+						else
+						{
+							<td class="bg-danger">N</td>
+						}
+					}
+				</tr>
+				<tr>
+					<td class="room-name">Couple Room </td>
+					<td><i class="fa-solid fa-person"></i> 2</td>
+					@for (var i = 1; i <= day[j]; i++)
+					{
+						if (true)
+						{
+							<td style="background-color:lightgreen; color:white;">₺</td>
+						}
+						else
+						{
+							<td class="bg-danger">N</td>
+						}
+					}
+				</tr>
+				<tr>
+					<td class="room-name">Family Room</td>
+					<td><i class="fa-solid fa-person"></i> 3</td>
+					@for (var i = 1; i <= day[j]; i++)
+					{
 
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
+						if (true)
+						{
+							<td style="background-color:lightgreen; color:white;">₺</td>
+						}
+						else
+						{
+							<td class="bg-danger">N</td>
+						}
+
 					}
-					else
+				</tr>
+				<tr>
+					<td class="room-name">King Suit</td>
+					<td><i class="fa-solid fa-person"></i> 2</td>
+					@for (var i = 1; i <= day[j]; i++)
 					{
-						<td class="bg-danger">N</td>
+
+						if (true)
+						{
+							<td style="background-color:lightgreen; color:white;">₺</td>
+						}
+						else
+						{
+							<td class="bg-danger">N</td>
+						}
 					}
-				}
-			</tr>
-		</tbody>
+				</tr>
+			</tbody>
 	</table>
-	<table class="calendar-table" id="secondTable">
-		<thead>
-			<tr>
-				<th rowspan="2" class="room-header">Rooms</th>
-				<th rowspan="2" class="">@Model.Month<br />@Model.Year</th>
-			</tr>
-			<tr class="date-row">
-
-				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
-				{
-					<td>@i</td>
-				}
-
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="room-name">Single Room </td>
-				<td><i class="fa-solid fa-person"></i> 1</td>
-				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
-				{
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-				}
-			</tr>
-			<tr>
-				<td class="room-name">Single Plus Room</td>
-				<td><i class="fa-solid fa-person"></i> 3</td>
-				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
-				{
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-				}
-			</tr>
-			<tr>
-				<td class="room-name">Couple Room </td>
-				<td><i class="fa-solid fa-person"></i> 2</td>
-				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
-				{
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-				}
-			</tr>
-			<tr>
-				<td class="room-name">Family Room</td>
-				<td><i class="fa-solid fa-person"></i> 3</td>
-				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
-				{
-
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-
-				}
-			</tr>
-			<tr>
-				<td class="room-name">King Suit</td>
-				<td><i class="fa-solid fa-person"></i> 2</td>
-				@for (var i = ((Model.Days) / 2) + 1; i <= Model.Days; i++)
-				{
-
-					if (true)
-					{
-						<td style="background-color:lightgreen; color:white;">₺</td>
-					}
-					else
-					{
-						<td class="bg-danger">N</td>
-					}
-				}
-			</tr>
-		</tbody>
-	</table>
+}
 
 
-	<div class="button-group">
-			<button style="background-color:#1a4870;" type="button" class="btnPre" onclick="ReCalendar(-1,@NextTime)">
-				<i class="fa-solid fa-arrow-left fa-lg" style="color: white;"></i> Previous Month
-			</button>
-			<button style="background-color:#1a4870;" type="button" class="btnNext" onclick="ReCalendar(1,@NextTime)">
-				<i class="fa-solid fa-arrow-right fa-lg" style="color: white;"></i> Next Month
-			</button>
-	</div>
-</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
 
-	var count = 0;
-	$(document).ready(function () {
-		$("#firstTable").hide();
-		$("#secondTable").hide();
-		$("#OrderCard").hide();
-		$(".button-group").hide();
-	});
-	$("#Head").click(function () {
-		$("#firstTable").toggle();
-		$("#secondTable").toggle();
-		$(".button-group").toggle();
-	});
 
-	$("#btnFirstHalf").click(function () {
-		count = +1;
-		if (count == 3) {
-			$("#btnFirstHalf").attr("disabled", true);
-		}
-	})
-	$("#btnSecondHalf").click(function () {
-		count = -1;
-		if (count == 1) {
-			$("#btnSecondHalf").attr("disabled", true);
-		}
-	})
-
-</script>

@@ -7,86 +7,31 @@ namespace BlueWaveHotel.Controllers
 	{
 		public DateTime TimeNow = DateTime.Now;
 		[HttpGet]
-		public IActionResult Index(int id)
+		public IActionResult Index()
 		{
-			int Days = DaysInnextMonth(TimeNow, id);
-			DateTime month = nextMonth(TimeNow, 3);
-			string currentMonth = month.ToString("MMMM");
-			int currentYear = month.Year;
-			var model = new ReservationViewModel()
+			var model = new ReservationViewModel();
+			for (int i = 1; i <= 3; i++)
 			{
-				Days = Days,
-				ResultTime = month,
-				Month = currentMonth,
-				Year = currentYear
-			};
+				model.Days.Add(DaysInMonth(TimeNow));
+				model.Month.Add(TimeNow.ToString("MMMM"));
+				model.Year.Add(TimeNow.Year);
+				TimeNow = TimeNow.AddMonths(i);
+			}
 
 			return View(model);
 		}
 
-		[HttpPost]
-		public IActionResult Index(DateTime TimeNow, int id)
-		{
-			int Days = DaysInnextMonth(TimeNow, id);
-			DateTime month = nextMonth(TimeNow, id);
-			string currentMonth = month.ToString("MMMM");
-			int currentYear = month.Year;
-			var model = new ReservationViewModel()
-			{
-				Days = Days,
-				ResultTime = month,
-				Month = currentMonth,
-				Year = currentYear
-			};
 
-			// Ajax için JSON olarak dönelim
-			return Json(model);
-		}
-		int DaysInnextMonth(DateTime TimeNow, int BackOrNext)
+
+		int DaysInMonth(DateTime TimeNow)
 		{
 			var Year = TimeNow.Year;
 			var Month = TimeNow.Month;
-			if (BackOrNext == 1)
-			{
-
-				if (Month == 12)
-				{
-					Month = 1;
-					Year += 1;
-				}
-				else
-				{
-					Month += 1;
-				}
-				return DateTime.DaysInMonth(Year, Month);
-			}
-			else if (BackOrNext == -1)
-			{
-				if (Month == 1)
-				{
-					Month = 12;
-					Year -= 1;
-				}
-				else
-				{
-					Month -= 1;
-				}
-				return DateTime.DaysInMonth(Year, Month);
-			}
 			return DateTime.DaysInMonth(Year, Month);
+
 		}
 
-		DateTime nextMonth(DateTime TimeNow, int BackOrNext)
-		{
-			if (BackOrNext == 1)
-			{
-				return TimeNow.AddMonths(1);
-			}
-			else if (BackOrNext == -1)
-			{
-				return TimeNow.AddMonths(-1);
-			}
-			return TimeNow;
-		}
 	}
+
+
 }
