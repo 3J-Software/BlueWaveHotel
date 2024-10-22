@@ -164,13 +164,13 @@
 	</div>
 </div>
 <div class="modal fade" id="calendarModal" tabindex="-1" aria-labelledby="calendarModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-xl" style="max-width: 90%; max-height: 80%;">
-		<div class="modal-content" style="height: 100%;">
+	<div class="modal-dialog" style="max-width: 80%; max-height: 70%;">
+		<div class="modal-content" style="height: auto;">
 			<div class="modal-header">
 				<h5 class="modal-title" id="calendarModalLabel">Takvim</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body" style="overflow-y: auto;">
+			<div class="modal-body" style="max-height: 65vh; overflow-y: auto;">
 				<!-- Calendar partial view'in burada render edilmesi -->
 				<partial name="_Calendar" model="@Model" />
 			</div>
@@ -180,6 +180,7 @@
 		</div>
 	</div>
 </div>
+
 
 <div id="OrderCard" class="container mt-4">
 	<div class="card mb-12 rounded-3">
