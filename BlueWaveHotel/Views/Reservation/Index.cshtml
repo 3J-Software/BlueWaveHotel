@@ -34,6 +34,7 @@
 	}
 </style>
 <div class="container mt-4 ">
+	<form asp-action="Search" asp-controller="Reservation" method="post">
 	<div class="row" style="margin-bottom:20px;">
 		<div class="col-md-8 col-sm-8 col-lg-8">
 			<div class="card-body">
@@ -63,99 +64,81 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="row g-2 align-items-center">
-		<!-- Giriş Tarihi -->
-		<div class="col-md">
-			<div class="rezinfoItem">
-				<div class="rezLabel">
-					<i class="fa-solid fa-calendar-days"></i>
-				</div>
-				<input type="date" class="form-control">
-			</div>
-		</div>
+		
+			<!-- Giriş Tarihi -->
+			<div class="col-md">
+				<div class="rezinfoItem">
+					<div class="rezLabel">
+						<i class="fa-solid fa-calendar-days"></i>
+					</div>
 
-		<!-- Çıkış Tarihi -->
-		<div class="col-md">
-			<div class="rezinfoItem">
-				<div class="rezLabel">
-					<i class="fa-solid fa-calendar-days"></i>
+					<input type="date" asp-for="Search.FirstDay" class="form-control"  required>
 				</div>
-				<input type="date" class="form-control">
 			</div>
-		</div>
 
-		<!-- Gece -->
-		<div class="col-md">
-			<div class="rezinfoItem">
-				<div class="rezLabel">
-					<i class="fa-solid fa-moon"></i>
+			<!-- Çıkış Tarihi -->
+			<div class="col-md">
+				<div class="rezinfoItem">
+					<div class="rezLabel">
+						<i class="fa-solid fa-calendar-days"></i>
+					</div>
+					
+					<input type="date" asp-for="Search.LastDay" class="form-control" required>
 				</div>
-				<select class="form-select">
-					<option selected>Night</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-					<option value="13">13</option>
-				</select>
 			</div>
-		</div>
-
-		<!-- Yetişkin -->
-		<div class="col-md">
-			<div class="rezinfoItem">
-				<div class="rezLabel">
-					<i class="fa-solid fa-person"></i>
+			<!-- Yetişkin -->
+			<div class="col-md">
+				<div class="rezinfoItem">
+					<div class="rezLabel">
+						<i class="fa-solid fa-person"></i>
+					</div>
+				
+					<select class="form-select" asp-for="Search.Adult" required>
+						<option selected>Adult</option>
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+					</select>
 				</div>
-				<select class="form-select">
-					<option selected>Adult</option>
-					<option value="0">0</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-				</select>
 			</div>
-		</div>
 
-		<!-- Çocuk -->
-		<div class="col-md">
-			<div class="rezinfoItem">
-				<div class="rezLabel">
-					<i class="fa-solid fa-child"></i>
+			<!-- Çocuk -->
+			<div class="col-md">
+				<div class="rezinfoItem">
+					<div class="rezLabel">
+						<i class="fa-solid fa-child"></i>
+					</div>
+				
+					<select class="form-select" asp-for="Search.Child" required>
+						<option selected>Child</option>
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+					</select>
 				</div>
-				<select class="form-select">
-					<option selected>Child</option>
-					<option value="0">0</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-				</select>
 			</div>
-		</div>
 
-		<!-- Rezervasyon Ara -->
-		<div class="col-md">
-			<button id="SearchButton" class="btn w-100">
-				<i class="fa-solid fa-magnifying-glass"></i> &nbsp; Search
-			</button>
-		</div>
+			<!-- Rezervasyon Ara -->
+			<div class="col-md">
+				<button id="SearchButton" class="btn w-100" type="submit">
+					<i class="fa-solid fa-magnifying-glass"></i> &nbsp; Search
+				</button>
+			</div>
+		
 	</div>
+	</form>
 </div>
 
 <div class="container mt-4 calendar-container">
@@ -183,60 +166,41 @@
 
 
 <div id="OrderCard" class="container mt-4">
-	<div class="card mb-12 rounded-3">
-		<div class="row g-0">
-			<div class="col-md-4">
-				<img src="~/images/room1.jpg" class="img-fluid rounded-start">
-			</div>
-			<div class="col-md-6">
-				<div class="card-body">
-
-					<h5 class="card-title">Room Name</h5>
-					<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-					<div class="row" style="margin-top:50px;">
-						<div class="col-4">
-							<div class="rezinfoItem" style="max-width:100%;">
-								<div class="rezLabel">
-									<i class="fa-solid fa-bed"></i>
-								</div>
-								<select class="form-select">
-									<option value="0" disabled selected>Room Count</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-4 align-items-center d-flex">
-							<div class="card-text " style="font-size:1.4rem; font-weight:bold;">1000₺</div>
-						</div>
-					</div>
-
-					<!-- Buton kısmı -->
-					<div class="d-flex mt-3">
-						<button class="btn btn-success px-4 py-2" style="font-size: 1.2rem; border-radius: 10px;">Buy</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-2">
-		<div class="card-body"></div>
-	</div>
+	<partial name="_OrderCard" model="@Model"/>
 </div>
 
 <script>
 
 	$(document).ready(function () {
 		$("#OrderCard").hide();
+		$('#SearchButton').click(function (e) {
+			e.preventDefault(); // Sayfa yenilenmesini engelle
+
+			// Form verilerini topla
+			var formData = {
+				FirstDay: $('#Search_FirstDay').val(),
+				LastDay: $('#Search_LastDay').val(),
+				Adult: $('#Search_Adult').val(),
+				Child: $('#Search_Child').val()
+			};
+
+			$.ajax({
+				url: '/Reservation/Search', // Controller ve action metodu
+				type: 'POST',
+				data: formData, // Form verilerini gönder
+				success: function (response) {
+					// Başarı durumunda geri dönen veriyi göster
+					console.log(response);
+					// Örneğin, sonucu bir div'de göster
+					$('#result').html(response);
+				},
+				error: function (xhr, status, error) {
+					console.log('Hata oluştu: ' + error);
+					// Hata mesajını göster
+					$('#result').html('Bir hata oluştu.');
+				}
+			});
+		});
 	});
 
 	$("#SearchButton").on("click", function () {

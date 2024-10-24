@@ -1,10 +1,14 @@
-﻿using BlueWaveHotel.Models;
+﻿using BlueWaveHotel.BL.Managers.Abstract;
+using BlueWaveHotel.Entities.Model.Concrete;
+using BlueWaveHotel.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlueWaveHotel.Controllers
 {
-	public class ReservationController : Controller
+	public class ReservationController(IManager<Room> _roomManager) : Controller
 	{
+
+
 		public DateTime TimeNow = DateTime.Now;
 		[HttpGet]
 		public IActionResult Index()
@@ -21,8 +25,6 @@ namespace BlueWaveHotel.Controllers
 			return View(model);
 		}
 
-
-
 		int DaysInMonth(DateTime TimeNow)
 		{
 			var Year = TimeNow.Year;
@@ -31,7 +33,21 @@ namespace BlueWaveHotel.Controllers
 
 		}
 
+		public async Task<IActionResult> Search(ReservationSearchVM searchVM)
+		{
+			var capacity = searchVM.Child + searchVM.Adult;
+			var room = _roomManager.GetAll(x => x.Status == "avaible" && x.Capacity >= capacity);
+
+			searchVM.Rooms = room;
+
+			return RedirectToAction("Index", searchVM);
+		}
+
 	}
 
-
+	//id
+	//floorid
+	//capasity
+	//resevartionid
+	//statü
 }
