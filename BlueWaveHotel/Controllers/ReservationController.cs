@@ -5,49 +5,43 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlueWaveHotel.Controllers
 {
-	public class ReservationController(IManager<Room> _roomManager) : Controller
-	{
+    public class ReservationController(IManager<Room> _roomManager) : Controller
+    {
 
 
-		public DateTime TimeNow = DateTime.Now;
-		[HttpGet]
-		public IActionResult Index()
-		{
-			var model = new ReservationViewModel();
-			for (int i = 1; i <= 3; i++)
-			{
-				model.Days.Add(DaysInMonth(TimeNow));
-				model.Month.Add(TimeNow.ToString("MMMM"));
-				model.Year.Add(TimeNow.Year);
-				TimeNow = TimeNow.AddMonths(i);
-			}
+        public DateTime TimeNow = DateTime.Now;
+        [HttpGet]
+        public IActionResult Index()
+        {
+            var model = new ReservationViewModel();
+            for (int i = 1; i <= 3; i++)
+            {
+                model.Days.Add(DaysInMonth(TimeNow));
+                model.Month.Add(TimeNow.ToString("MMMM"));
+                model.Year.Add(TimeNow.Year);
+                TimeNow = TimeNow.AddMonths(i);
+            }
 
-			return View(model);
-		}
+            return View(model);
+        }
 
-		int DaysInMonth(DateTime TimeNow)
-		{
-			var Year = TimeNow.Year;
-			var Month = TimeNow.Month;
-			return DateTime.DaysInMonth(Year, Month);
+        int DaysInMonth(DateTime TimeNow)
+        {
+            var Year = TimeNow.Year;
+            var Month = TimeNow.Month;
+            return DateTime.DaysInMonth(Year, Month);
 
-		}
+        }
 
-		public async Task<IActionResult> Search(ReservationSearchVM searchVM)
-		{
-			var capacity = searchVM.Child + searchVM.Adult;
-			var room = _roomManager.GetAll(x => x.Status == "avaible" && x.Capacity >= capacity);
+        public async Task<IActionResult> Search(ReservationSearchVM searchVM)
+        {
+            var capacity = searchVM.Child + searchVM.Adult;
+            var rooms = await _roomManager.GetAll(x => x.Status == "avaible" && x.Capacity >= capacity);
+            searchVM.Rooms = rooms;
+            return RedirectToAction("Index", searchVM);
+        }
 
-			searchVM.Rooms = room;
 
-			return RedirectToAction("Index", searchVM);
-		}
 
-	}
-
-	//id
-	//floorid
-	//capasity
-	//resevartionid
-	//statü
+    }
 }

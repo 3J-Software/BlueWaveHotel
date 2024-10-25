@@ -31,13 +31,15 @@ namespace BlueWaveHotel.DAL.Repository.Concrete
 
         }
 
-        public List<T>? GetAll(Expression<Func<T, bool>> predicate = null)
+        public async Task<List<T>> GetAll(Expression<Func<T, bool>> predicate = null)
         {
             if (predicate != null)
-                return _mySqlContext.Set<T>().Where(predicate).ToList();
+                return await _dbSet.Where(predicate).ToListAsync(); // ToListAsync() kullanımı
             else
-                return _mySqlContext.Set<T>().ToList();
+                return await _dbSet.ToListAsync(); // ToListAsync() kullanımı
         }
+
+
 
         public IQueryable<T> GetAllInclude(Expression<Func<T, bool>>? predicate, params Expression<Func<T, object>>[] include)
         {
