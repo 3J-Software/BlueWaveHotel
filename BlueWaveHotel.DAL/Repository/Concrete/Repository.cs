@@ -12,6 +12,14 @@ namespace BlueWaveHotel.DAL.Repository.Concrete
 
         readonly mySqlContext _mySqlContext;
         readonly DbSet<T> _dbSet;
+
+        public Repository(mySqlContext mySqlContext)
+        {
+            _mySqlContext = mySqlContext;
+            _dbSet = _mySqlContext.Set<T>(); // DbSet başlatılıyor
+        }
+
+
         public int Delete(T input)
         {
             _dbSet.Remove(input);

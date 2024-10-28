@@ -10,7 +10,7 @@ namespace BlueWaveHotel.BL.Managers.Concrete
 
         private readonly mySqlContext _context;
 
-        public BaseManager(mySqlContext context)
+        public BaseManager(mySqlContext context) : base(context)
         {
             _context = context;
         }

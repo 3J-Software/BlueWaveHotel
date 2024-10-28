@@ -35,11 +35,26 @@ namespace BlueWaveHotel.Controllers
 
         public async Task<IActionResult> Search(ReservationSearchVM searchVM)
         {
-            var capacity = searchVM.Child + searchVM.Adult;
-            var rooms = await _roomManager.GetAll(x => x.Status == "avaible" && x.Capacity >= capacity);
-            searchVM.Rooms = rooms;
-            return RedirectToAction("Index", searchVM);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var capacity = searchVM.Child + searchVM.Adult;
+                    var rooms = await _roomManager.GetAll(x => x.Status == "avaible" && x.Capacity >= capacity);
+                    searchVM.Rooms = rooms;
+                    return View("Index", searchVM);
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return View("Error");
+            }
+
+
         }
+
 
 
 
